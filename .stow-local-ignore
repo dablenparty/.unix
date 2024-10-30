@@ -1,0 +1,3 @@
+^.+\.(ps1|sh|bat)$
+\.git
+.alacritty.windows.toml
