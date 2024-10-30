@@ -1,0 +1,20 @@
+[terminal.shell]
+program = "pwsh"
+
+[font]
+# TODO: consider JetBrains Mono Nerd Font
+normal = { family = "MesloLGS NF", style = "Regular" }
+bold = { style = "Bold" }
+italic = { style = "Italic" }
+bold_italic = { style = "Bold Italic" }
+size = 13
+
+[keyboard]
+bindings = [
+  { key = "Left",  mods = "Alt",     chars = "\u001bB"       },
+  { key = "Right", mods = "Alt",     chars = "\u001bF"       },
+  { key = "Left",  mods = "Command", chars = "\u001bOH"      },
+  { key = "Right", mods = "Command", chars = "\u001bOF"      },
+  { key = "Back",  mods = "Command", chars = "\u0015"        },
+  { key = "Back",  mods = "Alt",     chars = "\u001b\u007f"  },
+]
