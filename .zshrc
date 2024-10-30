@@ -38,7 +38,7 @@ zinit cdreplay -q
 
 # Initialize oh-my-posh, but not on Apple Terminal
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
-  eval "$(oh-my-posh init zsh --config '~/dotfiles/zen.omp.toml')"
+  eval "$(oh-my-posh init zsh --config '~/zen.omp.toml')"
 fi
 
 ## Keybindings
