@@ -1,5 +1,5 @@
 # Check if homebrew is installed
-if ! type brew >/dev/null 2>&1
+if command -v brew 2>&1 >/dev/null
 then
   # Enable homebrew shellenv
   # which brew is used because Apple Silicon and Intel macs have different
@@ -82,25 +82,30 @@ alias davenhome='ssh -i ~/.ssh/davenhome_rsa hunterdavenport@192.168.50.214'
 alias cat='bat -p'
 
 ## Shell integrations
-eval "$(fzf --zsh)"
+if [[ "$OSTYPE" == "darwin"*  ]]; then
+    # not needed for linux
+    eval "$(fzf --zsh)"
+fi
 eval "$(zoxide init --cmd cd zsh)"
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+if [[ -d $PYENV_ROOT/bin ]]; then
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init -)"
+fi
 
 # Node Version Manager (nvm)
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# iterm2
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
 # jenv
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
+JENV_PATH="$HOME/.jenv/bin"
+if [[ -d "$JENV_PATH" ]]; then
+    export PATH="$HOME/.jenv/bin:$PATH"
+    eval "$(jenv init -)"
+fi
 
 # flutter & dart
 export PATH="$PATH":"$HOME/.pub-cache/bin"
