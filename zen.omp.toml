@@ -14,6 +14,13 @@ red = '#d0666f'
   newline = true
 
   [[blocks.segments]]
+    type = 'session'
+    style = 'plain'
+    background = 'transparent'
+    foreground = 'p:red'
+    template = '{{ if .SSHSession }}{{ .UserName }}@{{ .HostName }}{{ end }} '
+
+  [[blocks.segments]]
     type = 'path'
     style = 'plain'
     background = 'transparent'
@@ -35,11 +42,11 @@ red = '#d0666f'
       branch_icon = ' '
       commit_icon = '@'
       fetch_status = true
- 
+
 [[blocks]]
   type = 'prompt'
   alignment = 'right'
-  overflow = 'hidden'
+  overflow = 'hide'
 
   [[blocks.segments]]
     type = 'python'
@@ -49,11 +56,13 @@ red = '#d0666f'
 
   [[blocks.segments]]
     type = 'dart'
+    style = 'plain'
     foreground = 'p:blue'
     template = '{{ if .Error }}<p:red>{{ .Error }}</>{{ else }} {{ .Full }}{{ end }}'
 
   [[blocks.segments]]
     type = 'rust'
+    style = 'plain'
     foreground = '#e43716'
     template = '  {{ .Full }} '
 
