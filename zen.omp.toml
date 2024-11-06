@@ -1,12 +1,20 @@
-#:schema https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
-
-version = 2
-final_space = true
 console_title_template = '{{ .Shell }} in {{ .Folder }}'
+version = 3
+final_space = true
 
 [palette]
-blue = '#5faae8'
-red = '#d0666f'
+  blue = '#5faae8'
+  red = '#d0666f'
+
+[secondary_prompt]
+  template = '❯❯ '
+  foreground = 'magenta'
+  background = 'transparent'
+
+[transient_prompt]
+  template = '❯ '
+  background = 'transparent'
+  foreground_templates = ['{{if gt .Code 0}}red{{end}}', '{{if eq .Code 0}}magenta{{end}}']
 
 [[blocks]]
   type = 'prompt'
@@ -14,29 +22,29 @@ red = '#d0666f'
   newline = true
 
   [[blocks.segments]]
-    type = 'session'
     style = 'plain'
-    background = 'transparent'
-    foreground = 'p:red'
     template = '{{ if .SSHSession }}{{ .UserName }}@{{ .HostName }}{{ end }} '
+    foreground = 'p:red'
+    background = 'transparent'
+    type = 'session'
 
   [[blocks.segments]]
-    type = 'path'
     style = 'plain'
-    background = 'transparent'
-    foreground = 'blue'
     template = '{{ .Path }}'
+    foreground = 'blue'
+    background = 'transparent'
+    type = 'path'
 
     [blocks.segments.properties]
-      style = 'agnoster_short'
       folder_icon = ''
+      style = 'agnoster_short'
 
   [[blocks.segments]]
-    type = 'git'
     style = 'plain'
+    template = ' on <p:red>{{ .HEAD }}</><p:blue>{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }}</> <cyan>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>'
     foreground = 'cyan'
     background = 'transparent'
-    template = ' on <p:red>{{ .HEAD }}</><p:blue>{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }}</> <cyan>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>'
+    type = 'git'
 
     [blocks.segments.properties]
       branch_icon = ' '
@@ -49,23 +57,22 @@ red = '#d0666f'
   overflow = 'hide'
 
   [[blocks.segments]]
-    type = 'python'
     style = 'plain'
-    foreground = 'yellow'
     template = '{{ if .Error }}{{ .Error }}{{ else }}󰌠 {{ .Full }}{{ end }} <p:blue>({{ if .Venv }}{{ .Venv }}{{ end }})</>'
+    foreground = 'yellow'
+    type = 'python'
 
   [[blocks.segments]]
-    type = 'dart'
     style = 'plain'
-    foreground = 'p:blue'
     template = '{{ if .Error }}<p:red>{{ .Error }}</>{{ else }} {{ .Full }}{{ end }}'
+    foreground = 'p:blue'
+    type = 'dart'
 
   [[blocks.segments]]
-    type = 'rust'
     style = 'plain'
-    foreground = '#e43716'
     template = '  {{ .Full }} '
-
+    foreground = '#e43716'
+    type = 'rust'
 
 [[blocks]]
   type = 'prompt'
@@ -73,24 +80,8 @@ red = '#d0666f'
   newline = true
 
   [[blocks.segments]]
-    type = 'text'
     style = 'plain'
-    foreground_templates = [
-      "{{if gt .Code 0}}red{{end}}",
-      "{{if eq .Code 0}}magenta{{end}}",
-    ]
-    background = 'transparent'
     template = '❯'
-
-[transient_prompt]
-  foreground_templates = [
-    "{{if gt .Code 0}}red{{end}}",
-    "{{if eq .Code 0}}magenta{{end}}",
-  ]
-  background = 'transparent'
-  template = '❯ '
-
-[secondary_prompt]
-  foreground = 'magenta'
-  background = 'transparent'
-  template = '❯❯ '
+    background = 'transparent'
+    type = 'text'
+    foreground_templates = ['{{if gt .Code 0}}red{{end}}', '{{if eq .Code 0}}magenta{{end}}']
