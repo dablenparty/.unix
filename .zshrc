@@ -12,8 +12,8 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
 # Download Zinit, if it's not there yet
 if [ ! -d "$ZINIT_HOME" ]; then
-   mkdir -p "$(dirname $ZINIT_HOME)"
-   git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+  mkdir -p "$(dirname $ZINIT_HOME)"
+  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
 ## Source/Load zinit
@@ -94,7 +94,10 @@ eval "$(zoxide init --cmd cd zsh)"
 export PYENV_ROOT="$HOME/.pyenv"
 if [[ -d $PYENV_ROOT/bin ]]; then
     export PATH="$PYENV_ROOT/bin:$PATH"
-    eval "$(pyenv init -)"
+fi
+if command -v pyenv 2>&1 >/dev/null
+then
+  eval "$(pyenv init -)"
 fi
 
 # Node Version Manager (nvm)
