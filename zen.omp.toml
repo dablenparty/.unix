@@ -36,7 +36,7 @@ final_space = true
     type = 'path'
 
     [blocks.segments.properties]
-      folder_icon = ''
+      folder_icon = '..'
       style = 'agnoster_short'
 
   [[blocks.segments]]
