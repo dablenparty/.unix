@@ -81,7 +81,7 @@ alias ll='lsd -hAlF'
 alias davenhome='ssh -i ~/.ssh/davenhome_rsa hunterdavenport@192.168.50.214'
 alias cat='bat -p'
 # wrap vscode with zoxide for easier directory cd'ing
-alias code='(){ __zoxide_z $@ && code . ;}'
+alias zcode='(){ __zoxide_z $@ && code . ;}'
 
 ## Shell integrations
 if [[ "$OSTYPE" == "darwin"*  ]]; then
