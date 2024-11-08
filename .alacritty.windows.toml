@@ -1,5 +1,6 @@
 [terminal.shell]
 program = "pwsh"
+args = ["-WorkingDirectory", "~"]
 
 [font]
 # TODO: consider JetBrains Mono Nerd Font
