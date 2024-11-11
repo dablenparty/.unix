@@ -1,10 +1,15 @@
 # Check if homebrew is installed
-if command -v brew 2>&1 >/dev/null
-then
-  # Enable homebrew shellenv
-  # which brew is used because Apple Silicon and Intel macs have different
-  # install paths for homebrew
-  eval "$($(which brew) shellenv)"
+if [[ -f "/usr/local/bin/brew" ]]; then
+    BREW_HOME="/usr/local/bin/brew"
+# Apple Silicon
+elif [[ -f "/opt/homebrew/bin/brew" ]]; then
+    BREW_HOME="/op/homebrew/bin/brew"
+elif [[ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
+    BREW_HOME="/home/linuxbrew/.linuxbrew/bin/brew"
+fi
+
+if [[ -n "$BREW_HOME" ]]; then
+    eval "$($BREW_HOME shellenv)"
 fi
 
 # Set the directory we want to store zinit and plugins
@@ -84,10 +89,7 @@ alias cat='bat -p'
 alias zcode='(){ __zoxide_z $@ && code . ;}'
 
 ## Shell integrations
-if [[ "$OSTYPE" == "darwin"*  ]]; then
-    # not needed for linux
-    eval "$(fzf --zsh)"
-fi
+eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
 # pyenv
