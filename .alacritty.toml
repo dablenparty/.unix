@@ -1,10 +1,10 @@
 [window]
-opacity = 0.7
+opacity = 0.8
 blur = true
 
 [font]
 # TODO: consider JetBrains Mono Nerd Font
-normal = { family = "MesloLGS NF", style = "Regular" }
+normal = { family = "JetBrainsMono NF", style = "Regular" }
 bold = { style = "Bold" }
 italic = { style = "Italic" }
 bold_italic = { style = "Bold Italic" }
