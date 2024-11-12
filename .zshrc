@@ -89,7 +89,10 @@ alias cat='bat -p'
 alias zcode='(){ __zoxide_z $@ && code . ;}'
 
 ## Shell integrations
+# fzf fuzzy finder
+export FZF_DEFAULT_COMMAND="rg --files --hidden --no-ignore-vcs"
 eval "$(fzf --zsh)"
+
 eval "$(zoxide init --cmd cd zsh)"
 
 # pyenv
@@ -115,5 +118,5 @@ if [[ -d "$JENV_PATH" ]]; then
 fi
 
 # flutter & dart
-export PATH="$PATH":"$HOME/.pub-cache/bin"
+export PATH="$PATH":"$HOME/.pub-cache/bin":"$HOME/.flutter/flutter/bin"
 [[ -f /Users/hunterdavenport/.dart-cli-completion/zsh-config.zsh ]] && . /Users/hunterdavenport/.dart-cli-completion/zsh-config.zsh || true
