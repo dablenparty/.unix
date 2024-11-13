@@ -86,7 +86,7 @@ alias ll='lsd -hAlF'
 alias davenhome='ssh -i ~/.ssh/davenhome_rsa hunterdavenport@192.168.50.214'
 alias cat='bat -p'
 # wrap vscode with zoxide for easier directory cd'ing
-alias code='(){ if [[ $# -eq 1 && -f $1 ]]; then code $1; else  __zoxide_z $@ && code . ; fi}'
+alias zcode='(){ if [[ $# -eq 1 && -e $1 ]]; then code $1; else zoxide query $@ | xargs code ; fi}'
 
 ## Shell integrations
 # fzf fuzzy finder
