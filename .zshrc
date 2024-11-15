@@ -83,6 +83,7 @@ alias zshconfig='vim ~/.zshrc'
 alias pubip="ifconfig -u | grep 'inet ' | grep -v 127.0.0.1 | cut -d\  -f2 | head -1"
 alias ls='lsd'
 alias ll='lsd -hAlF'
+alias la='lsd -a'
 alias davenhome='ssh -i ~/.ssh/davenhome_rsa hunterdavenport@192.168.50.214'
 alias cat='bat -p'
 # wrap vscode with zoxide for easier directory cd'ing
