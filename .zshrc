@@ -12,6 +12,15 @@ if [[ -n "$BREW_HOME" ]]; then
     eval "$($BREW_HOME shellenv)"
 fi
 
+# fzf fuzzy finder
+export FZF_DEFAULT_COMMAND="rg --files --hidden --no-ignore-vcs"
+eval "$(fzf --zsh)"
+
+# Initialize oh-my-posh, but not on Apple Terminal
+if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
+  eval "$(oh-my-posh init zsh --config '~/zen.omp.toml')"
+fi
+
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -40,11 +49,6 @@ zinit snippet OMZP::command-not-found
 autoload -Uz compinit && compinit
 
 zinit cdreplay -q
-
-# Initialize oh-my-posh, but not on Apple Terminal
-if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
-  eval "$(oh-my-posh init zsh --config '~/zen.omp.toml')"
-fi
 
 ## Keybindings
 bindkey -e
@@ -79,7 +83,7 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'lsd $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'lsd $realpath'
 
 # Aliases
-alias zshconfig='vim ~/.zshrc'
+alias zshconfig='nvim ~/.zshrc'
 alias pubip="ifconfig -u | grep 'inet ' | grep -v 127.0.0.1 | cut -d\  -f2 | head -1"
 alias ls='lsd'
 alias ll='lsd -hAlF'
@@ -90,10 +94,6 @@ alias cat='bat -p'
 alias zcode='(){ if [[ $# -eq 1 && -e $1 ]]; then code $1; else zoxide query $@ | xargs code ; fi}'
 
 ## Shell integrations
-# fzf fuzzy finder
-export FZF_DEFAULT_COMMAND="rg --files --hidden --no-ignore-vcs"
-eval "$(fzf --zsh)"
-
 eval "$(zoxide init --cmd cd zsh)"
 
 # pyenv
