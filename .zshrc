@@ -1,11 +1,11 @@
 # Check if homebrew is installed
 if [[ -f "/usr/local/bin/brew" ]]; then
     BREW_HOME="/usr/local/bin/brew"
-# Apple Silicon
-elif [[ -f "/opt/homebrew/bin/brew" ]]; then
-    BREW_HOME="/op/homebrew/bin/brew"
 elif [[ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
     BREW_HOME="/home/linuxbrew/.linuxbrew/bin/brew"
+# Apple Silicon
+elif [[ -f "/opt/homebrew/bin/brew" ]]; then
+    BREW_HOME="/opt/homebrew/bin/brew"
 fi
 
 if [[ -n "$BREW_HOME" ]]; then
@@ -101,9 +101,14 @@ export PYENV_ROOT="$HOME/.pyenv"
 if [[ -d $PYENV_ROOT/bin ]]; then
     export PATH="$PYENV_ROOT/bin:$PATH"
 fi
+# install pyenv-virtualenv if not installed
+if [[ ! -d $PYENV_ROOT/plugins/pyenv-virtualenv ]]; then
+    git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
+fi
 if command -v pyenv 2>&1 >/dev/null
 then
-  eval "$(pyenv init -)"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
 fi
 
 # Node Version Manager (nvm)
