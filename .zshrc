@@ -120,7 +120,7 @@ fi
 
 # flutter & dart
 export PATH="$PATH":"$HOME/.pub-cache/bin":"$HOME/.flutter/flutter/bin"
-[[ -f /Users/hunterdavenport/.dart-cli-completion/zsh-config.zsh ]] && . /Users/hunterdavenport/.dart-cli-completion/zsh-config.zsh || true
+[[ -f "$HOME/.dart-cli-completion/zsh-config.zsh" ]] && . "$HOME/.dart-cli-completion/zsh-config.zsh" || true
 
 # fnm
 FNM_PATH="/Users/hunterdavenport/Library/Application Support/fnm"
