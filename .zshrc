@@ -111,11 +111,6 @@ then
     eval "$(pyenv virtualenv-init -)"
 fi
 
-# Node Version Manager (nvm)
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 # jenv
 JENV_PATH="$HOME/.jenv/bin"
 if [[ -d "$JENV_PATH" ]]; then
