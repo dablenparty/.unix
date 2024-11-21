@@ -123,8 +123,28 @@ export PATH="$PATH":"$HOME/.pub-cache/bin":"$HOME/.flutter/flutter/bin"
 [[ -f "$HOME/.dart-cli-completion/zsh-config.zsh" ]] && . "$HOME/.dart-cli-completion/zsh-config.zsh" || true
 
 # fnm
-FNM_PATH="/Users/hunterdavenport/Library/Application Support/fnm"
+# from fnm install script: https://github.com/Schniz/fnm/blob/master/.ci/install.sh
+OS="$(uname -s)"
+
+case "${OS}" in
+   MINGW* | Win*) OS="Windows" ;;
+esac
+
+if [ -d "$HOME/.fnm" ]; then
+  FNM_PATH="$HOME/.fnm"
+elif [ -n "$XDG_DATA_HOME" ]; then
+  FNM_PATH="$XDG_DATA_HOME/fnm"
+elif [ "$OS" = "Darwin" ]; then
+  FNM_PATH="$HOME/Library/Application Support/fnm"
+else
+  FNM_PATH="$HOME/.local/share/fnm"
+fi
+
 if [ -d "$FNM_PATH" ]; then
-  export PATH="/Users/hunterdavenport/Library/Application Support/fnm:$PATH"
+  export PATH="$FNM_PATH:$PATH"
   eval "`fnm env`"
+  if [[ -e "$FNM_PATH/_fnm.sh" ]]; then
+    # consider auto-installing them if they don't exist
+    . "$FNM_PATH/_fnm.sh"
+  fi
 fi
