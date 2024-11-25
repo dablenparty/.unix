@@ -88,7 +88,7 @@ alias pubip="ifconfig -u | grep 'inet ' | grep -v 127.0.0.1 | cut -d\  -f2 | hea
 alias ls='lsd'
 alias ll='lsd -hAlF'
 alias la='lsd -a'
-alias davenhome='ssh -i ~/.ssh/davenhome_rsa hunterdavenport@192.168.50.214'
+alias lg='lazygit'
 alias cat='bat -p'
 # wrap vscode with zoxide for easier directory cd'ing
 alias zcode='(){ if [[ $# -eq 1 && -e $1 ]]; then code $1; else zoxide query $@ | xargs code ; fi}'
