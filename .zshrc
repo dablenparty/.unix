@@ -86,7 +86,7 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'lsd $realpath'
 alias zshconfig='nvim ~/.zshrc'
 alias pubip="ifconfig -u | grep 'inet ' | grep -v 127.0.0.1 | cut -d\  -f2 | head -1"
 alias ls='lsd'
-alias ll='lsd -hAlF'
+alias ll='lsd -hAlFg'
 alias la='lsd -a'
 alias lg='lazygit'
 alias cat='bat -p'
