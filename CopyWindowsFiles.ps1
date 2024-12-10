@@ -1,3 +1,5 @@
+Write-Output "Copying PowerShell profile"
+Copy-Item -Path ".\PowerShell_profile.ps1" -Destination $PROFILE
 Write-Output "Copying Alacritty config"
 $AlacrittyConfigFolder = "$env:APPDATA\alacritty"
 if (-Not (Test-Path -PathType Container -Path "$AlacrittyConfigFolder")) {
