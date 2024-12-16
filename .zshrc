@@ -100,13 +100,12 @@ eval "$(zoxide init --cmd cd zsh)"
 export PYENV_ROOT="$HOME/.pyenv"
 if [[ -d $PYENV_ROOT/bin ]]; then
     export PATH="$PYENV_ROOT/bin:$PATH"
-fi
-# install pyenv-virtualenv if not installed
-if [[ ! -d $PYENV_ROOT/plugins/pyenv-virtualenv ]]; then
-    git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
-fi
-if command -v pyenv 2>&1 >/dev/null
-then
+ 
+    # install pyenv-virtualenv if not installed
+    if [[ ! -d "$PYENV_ROOT/plugins/pyenv-virtualenv" ]]; then
+        git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
+    fi
+
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
 fi
@@ -119,11 +118,16 @@ if [[ -d "$JENV_PATH" ]]; then
 fi
 
 # flutter & dart
-export PATH="$PATH":"$HOME/.pub-cache/bin":"$HOME/.flutter/flutter/bin"
-[[ -f "$HOME/.dart-cli-completion/zsh-config.zsh" ]] && . "$HOME/.dart-cli-completion/zsh-config.zsh" || true
+FLUTTER_PATH="$HOME/.flutter/flutter"
+if [ -d "$FLUTTER_PATH" ]; then
+  export PATH="$PATH":"$HOME/.pub-cache/bin":"$FLUTTER_PATH/bin"
+  if [[ -f "$HOME/.dart-cli-completion/zsh-config.zsh" ]]; then
+    . "$HOME/.dart-cli-completion/zsh-config.zsh"
+  fi
+fi
 
 # fnm
-# from fnm install script: https://github.com/Schniz/fnm/blob/master/.ci/install.sh
+# modified from fnm install script: https://github.com/Schniz/fnm/blob/master/.ci/install.sh
 OS="$(uname -s)"
 
 case "${OS}" in
