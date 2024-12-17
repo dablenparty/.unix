@@ -1,15 +1,15 @@
 # Check if homebrew is installed
 if [[ -f "/usr/local/bin/brew" ]]; then
-    BREW_HOME="/usr/local/bin/brew"
+  BREW_HOME="/usr/local/bin/brew"
 elif [[ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
-    BREW_HOME="/home/linuxbrew/.linuxbrew/bin/brew"
+  BREW_HOME="/home/linuxbrew/.linuxbrew/bin/brew"
 # Apple Silicon
 elif [[ -f "/opt/homebrew/bin/brew" ]]; then
-    BREW_HOME="/opt/homebrew/bin/brew"
+  BREW_HOME="/opt/homebrew/bin/brew"
 fi
 
 if [[ -n "$BREW_HOME" ]]; then
-    eval "$($BREW_HOME shellenv)"
+  eval "$($BREW_HOME shellenv)"
 fi
 
 # fzf fuzzy finder
@@ -18,20 +18,20 @@ eval "$(fzf --zsh)"
 
 # Initialize oh-my-posh, but not on Apple Terminal
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
-  eval "$(oh-my-posh init zsh --config '~/zen.omp.toml')"
+  eval "$(oh-my-posh init zsh --config "$HOME"/zen.omp.toml)"
 fi
 
 # Set the directory we want to store zinit and plugins
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+ZINIT_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/zinit/zinit.git"
 
 # Download Zinit, if it's not there yet
 if [ ! -d "$ZINIT_HOME" ]; then
-  mkdir -p "$(dirname $ZINIT_HOME)"
+  mkdir -p "$(dirname "$ZINIT_HOME")"
   git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
 ## Source/Load zinit
-source "${ZINIT_HOME}/zinit.zsh"
+source "$ZINIT_HOME/zinit.zsh"
 
 ## Add in zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
@@ -58,9 +58,9 @@ bindkey '^[w' kill-region
 
 ## History
 HISTSIZE=5000
-HISTFILE=~/.zsh_history
-SAVEHIST=$HISTSIZE
-HISTDUP=erase
+HISTFILE=$HOME/.zsh_history
+export SAVEHIST=$HISTSIZE
+export HISTDUP=erase
 setopt appendhistory
 setopt sharehistory
 setopt hist_ignore_space
@@ -83,7 +83,7 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'lsd $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'lsd $realpath'
 
 # Aliases
-alias zshconfig='nvim ~/.zshrc'
+alias zshconfig="nvim \$HOME/.zshrc"
 alias pubip="ifconfig -u | grep 'inet ' | grep -v 127.0.0.1 | cut -d\  -f2 | head -1"
 alias ls='lsd'
 alias ll='lsd -hAlFg'
@@ -91,7 +91,7 @@ alias la='lsd -a'
 alias lg='lazygit'
 alias cat='bat -p'
 # wrap vscode with zoxide for easier directory cd'ing
-alias zcode='(){ if [[ $# -eq 1 && -e $1 ]]; then code $1; else zoxide query $@ | xargs code ; fi}'
+zcode() { if [[ $# -eq 1 && -e $1 ]]; then code "$1"; else zoxide query "$@" | xargs code; fi; }
 
 ## Shell integrations
 eval "$(zoxide init --cmd cd zsh)"
@@ -99,22 +99,22 @@ eval "$(zoxide init --cmd cd zsh)"
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 if [[ -d $PYENV_ROOT/bin ]]; then
-    export PATH="$PYENV_ROOT/bin:$PATH"
- 
-    # install pyenv-virtualenv if not installed
-    if [[ ! -d "$PYENV_ROOT/plugins/pyenv-virtualenv" ]]; then
-        git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
-    fi
+  export PATH="$PYENV_ROOT/bin:$PATH"
 
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
+  # install pyenv-virtualenv if not installed
+  if [[ ! -d "$PYENV_ROOT/plugins/pyenv-virtualenv" ]]; then
+    git clone https://github.com/pyenv/pyenv-virtualenv.git "$(pyenv root)"/plugins/pyenv-virtualenv
+  fi
+
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
 fi
 
 # jenv
 JENV_PATH="$HOME/.jenv/bin"
 if [[ -d "$JENV_PATH" ]]; then
-    export PATH="$HOME/.jenv/bin:$PATH"
-    eval "$(jenv init -)"
+  export PATH="$HOME/.jenv/bin:$PATH"
+  eval "$(jenv init -)"
 fi
 
 # flutter & dart
@@ -131,7 +131,7 @@ fi
 OS="$(uname -s)"
 
 case "${OS}" in
-   MINGW* | Win*) OS="Windows" ;;
+MINGW* | Win*) OS="Windows" ;;
 esac
 
 if [ -d "$HOME/.fnm" ]; then
@@ -146,7 +146,7 @@ fi
 
 if [ -d "$FNM_PATH" ]; then
   export PATH="$FNM_PATH:$PATH"
-  eval "`fnm env --use-on-cd --version-file-strategy=recursive --shell=zsh`"
+  eval "$(fnm env --use-on-cd --version-file-strategy=recursive --shell=zsh)"
   if [[ -e "$FNM_PATH/_fnm.sh" ]]; then
     # consider auto-installing them if they don't exist
     . "$FNM_PATH/_fnm.sh"
