@@ -13,7 +13,8 @@ if [[ -n "$BREW_HOME" ]]; then
 fi
 
 # fzf fuzzy finder
-export FZF_DEFAULT_COMMAND="rg --files --hidden --no-ignore-vcs"
+export FZF_DEFAULT_COMMAND="fd --type file --hidden --no-ignore-vcs --exclude .git"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 eval "$(fzf --zsh)"
 
 # Initialize oh-my-posh, but not on Apple Terminal
