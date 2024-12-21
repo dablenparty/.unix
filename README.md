@@ -20,7 +20,6 @@ A collection of my dotfiles. These are primarily for macOS/Linux, but certain fi
 - `gcc`
     - I recommend using `build-essential`
 - `git`
-- `ifconfig`
 - `make`
     - Install with `brew` on macOS
 - `unzip`
@@ -38,7 +37,7 @@ sudo apt update && sudo apt upgrade -y --fix-missing
 Then install the packages:
 
 ```bash
-sudo apt install build-essential git ifconfig make unzip zsh
+sudo apt install build-essential git make unzip zsh
 ```
 
 ### Homebrew Packages
@@ -46,11 +45,9 @@ sudo apt install build-essential git ifconfig make unzip zsh
 Skip the words:
 
 ```bash
-brew install alacritty bat fd fzf lazygit lsd ripgrep zoxide
+brew install bat fd fzf lazygit lsd ripgrep zoxide
 ```
 
-- `alacritty`
-    - My choice of terminal emulator.
 - `bat`
     - `cat` replacement with syntax highlighting, paging, and more.
 - `fd`
@@ -70,6 +67,8 @@ brew install alacritty bat fd fzf lazygit lsd ripgrep zoxide
 
 These packages install tools that are used in my `.zshrc`, but are not required for it to work. I do use them all.
 
+- `alacritty`
+    - My choice of terminal emulator.
 - `flutter`
     - Flutter toolkit.
 - `fnm`
