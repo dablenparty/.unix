@@ -9,7 +9,7 @@ A collection of my dotfiles. These are primarily for macOS/Linux, but certain fi
 - Package Managers
     - macOS/Linux: [Homebrew](https://brew.sh/)
     - Windows: `winget` **and** [`choco`](https://chocolatey.org/install#individual)
-- [`oh-my-posh`]
+- `oh-my-posh`
     - macOS/Linux: `brew install jandedobbeleer/oh-my-posh/oh-my-posh`
     - [Windows](https://ohmyposh.dev/docs/installation/windows)
 - A [Nerd Font](https://www.nerdfonts.com/)
