@@ -127,7 +127,7 @@ if [ -d "$FLUTTER_PATH" ]; then
   fi
 fi
 
-# fnm
+# fnm (node)
 # modified from fnm install script: https://github.com/Schniz/fnm/blob/master/.ci/install.sh
 OS="$(uname -s)"
 
@@ -152,4 +152,14 @@ if [ -d "$FNM_PATH" ]; then
     # consider auto-installing them if they don't exist
     . "$FNM_PATH/_fnm.sh"
   fi
+fi
+
+# Golang
+GOPATH="${GOPATH:-$HOME/go}"
+
+if [ -d "$GOPATH" ]; then
+  export GOPATH="$GOPATH"
+
+  # Update PATH to include GOPATH and GOROOT binaries
+  export PATH="$GOPATH/bin:$GOROOT/bin:$HOME/.local/bin:$PATH"
 fi
