@@ -1,0 +1,39 @@
+# Theme
+theme = SpaceGray Bright
+background-opacity = 0.8
+# TODO: check this on macOS
+background-blur-radius = 20
+
+# Font
+font-family = "JetBrainsMono NF"
+font-size = 15
+
+# Keybindings
+# jump to start of last word
+keybind = alt+left=esc:B
+# jump to start of line (macOS only)
+keybind = super+left=esc:OH
+
+# jump to end of next word
+keybind = alt+right=esc:F
+# jump to end of line (macOS only)
+keybind = super+right=esc:OF
+
+# Using esc: action doesn't work for sending multiple sequences yet
+# backspace last word
+keybind = alt+backspace=text:\x1b\x7f
+# backspace entire line
+keybind = super+backspace=text:\x15
+
+# Shell
+shell-integration-features = no-cursor,no-sudo,title
+wait-after-command = true
+
+# Cursor
+cursor-style = block
+
+# Window
+window-inherit-working-directory = true
+window-decoration = true
+# TODO: test this on macOS
+# macos-titlebar-style = hidden
