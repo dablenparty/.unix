@@ -26,6 +26,18 @@ A collection of my dotfiles. These are primarily for macOS/Linux, but certain fi
 - `zsh`
     - Comes pre-installed on macOS, if not use Homebrew
 
+Don't forget to change your shell to `zsh` if necessary. **Do not run the command as root!** You want to change your *user* shell:
+
+```bash
+chsh -s /usr/bin/zsh
+```
+
+#### Arch Install Command
+
+```bash
+sudo pacman -Syu gcc git make unzip zsh
+```
+
 #### Ubuntu Install Command
 
 First, update your system:
@@ -40,12 +52,18 @@ Then install the packages:
 sudo apt install build-essential git make unzip zsh
 ```
 
-### Homebrew Packages
+### Required Packages
 
-Skip the words:
+Homebrew (macOS/Ubuntu):
 
 ```bash
 brew install bat fd fzf lazygit lsd ripgrep zoxide
+```
+
+Arch:
+
+```bash
+sudo pacman -S bat fd fzf lazygit lsd ripgrep zoxide
 ```
 
 - `bat`
@@ -63,9 +81,9 @@ brew install bat fd fzf lazygit lsd ripgrep zoxide
 - `zoxide`
     - `cd` replacement with fuzzy directory finding.
 
-#### Optional Homebrew Packages
+#### Optional Packages
 
-These packages install tools that are used in my `.zshrc`, but are not required for it to work. I do use them all.
+These packages install tools that are used in this repository, but are not required for it to work.
 
 - `alacritty`
     - My choice of terminal emulator.
@@ -73,8 +91,10 @@ These packages install tools that are used in my `.zshrc`, but are not required 
     - Flutter toolkit.
 - `fnm`
     - Fast Node Manager. A fast, cross-platform Node version manager that works quite well with environments.
+- `go`
+    - Golang toolkit.
 - `jenv`
     - Manages the Java environment, making switching versions easy. Note: does **not** install Java, only manages installed versions.
 - `pyenv`
-    - A python version manager with support for virtual environments.
+    - A python version manager with support for virtual environments. I love how simple it is.
 
