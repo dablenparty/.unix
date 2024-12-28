@@ -56,6 +56,8 @@ bindkey -e
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 bindkey '^[w' kill-region
+# Some terminal emulators already do this; some don't
+bindkey '^[[3~' delete-char
 
 ## History
 HISTSIZE=5000
