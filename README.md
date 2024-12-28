@@ -6,14 +6,23 @@ A collection of my dotfiles. These are primarily for macOS/Linux, but certain fi
 
 ### General Pre-Requisites
 
-- Package Managers
-    - macOS/Linux: [Homebrew](https://brew.sh/)
+First, you'll need a package manager or two:
+    - macOS: [Homebrew](https://brew.sh/)
+    - Linux: [Homebrew](https://brew.sh/)
+        - Arch can use `pacman`, but `brew` is still required for `oh-my-posh`
     - Windows: `winget` **and** [`choco`](https://chocolatey.org/install#individual)
-- `oh-my-posh`
-    - macOS/Linux: `brew install jandedobbeleer/oh-my-posh/oh-my-posh`
-    - [Windows](https://ohmyposh.dev/docs/installation/windows)
-- A [Nerd Font](https://www.nerdfonts.com/)
-    - Can be installed with `oh-my-posh`
+
+Next, you'll need `oh-my-posh` for terminal customization. If you're on [Windows](https://ohmyposh.dev/docs/installation/windows), follow the linked instructions. Otherwise, it gets installed via `brew` (even on Arch):
+
+```bash
+brew install jandedobbeleer/oh-my-posh/oh-my-posh
+```
+
+The last thing you'll need is a [Nerd Font](https://ohmyposh.dev/docs/installation/fonts). These can be installed [manually](https://www.nerdfonts.com/), via `brew`, or via `oh-my-posh`. At the time of writing, I currently use JetBrains Mono:
+
+```bash
+oh-my-posh font install JetBrainsMono
+```
 
 ### Unix Pre-Requisites
 
@@ -54,17 +63,25 @@ sudo apt install build-essential git make unzip zsh
 
 ### Required Packages
 
-Homebrew (macOS/Ubuntu):
+<details>
+
+<summary>Arch</summary>
+
+```bash
+sudo pacman -S bat fd fzf lazygit lsd ripgrep zoxide
+```
+
+</details>
+
+<details>
+
+<summary>Homebrew</summary>
 
 ```bash
 brew install bat fd fzf lazygit lsd ripgrep zoxide
 ```
 
-Arch:
-
-```bash
-sudo pacman -S bat fd fzf lazygit lsd ripgrep zoxide
-```
+</details>
 
 - `bat`
     - `cat` replacement with syntax highlighting, paging, and more.
@@ -85,12 +102,12 @@ sudo pacman -S bat fd fzf lazygit lsd ripgrep zoxide
 
 These packages install tools that are used in this repository, but are not required for it to work.
 
-- `alacritty`
-    - My choice of terminal emulator.
 - `flutter`
     - Flutter toolkit.
 - `fnm`
     - Fast Node Manager. A fast, cross-platform Node version manager that works quite well with environments.
+- [`ghostty`](https://ghostty.org)
+    - My current choice of terminal emulator. I previously used [`alacrirtty`](https://alacritty.org/index.html).
 - `go`
     - Golang toolkit.
 - `jenv`
