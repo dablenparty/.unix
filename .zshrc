@@ -85,7 +85,6 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'lsd $realpath'
 
 # Aliases
 alias zshconfig="nvim \$HOME/.zshrc"
-alias pubip="ifconfig -u | grep 'inet ' | grep -v 127.0.0.1 | cut -d\  -f2 | head -1"
 alias ls='lsd'
 alias ll='lsd -hAlFg'
 alias la='lsd -a'
