@@ -1,7 +1,6 @@
 # Theme
 theme = SpaceGray Bright
 background-opacity = 0.8
-# TODO: check this on macOS
 background-blur-radius = 20
 
 # Font
@@ -35,5 +34,3 @@ cursor-style = block
 # Window
 window-inherit-working-directory = true
 window-decoration = true
-# TODO: test this on macOS
-# macos-titlebar-style = hidden
