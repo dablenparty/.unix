@@ -1,6 +1,6 @@
 # dotfiles
 
-A collection of my dotfiles. These are primarily for macOS/Linux, but certain files/scripts do exist for Windows
+A collection of dotfiles I use on macOS and various Linux distros.
 
 ## Installation
 
@@ -10,30 +10,27 @@ First, you'll need a package manager or two:
     - macOS: [Homebrew](https://brew.sh/)
     - Linux: [Homebrew](https://brew.sh/)
         - Arch can use `pacman`, but `brew` is still required for `oh-my-posh`
-    - Windows: `winget` **and** [`choco`](https://chocolatey.org/install#individual)
 
-Next, you'll need `oh-my-posh` for terminal customization. If you're on [Windows](https://ohmyposh.dev/docs/installation/windows), follow the linked instructions. Otherwise, it gets installed via `brew` (even on Arch):
+Next, you'll need `oh-my-posh` for terminal customization. It gets installed via `brew` (even on Arch):
 
 ```bash
 brew install jandedobbeleer/oh-my-posh/oh-my-posh
 ```
 
-The last thing you'll need is a [Nerd Font](https://ohmyposh.dev/docs/installation/fonts). These can be installed [manually](https://www.nerdfonts.com/), via `brew`, or via `oh-my-posh`. At the time of writing, I currently use JetBrains Mono:
+The next thing you'll need is a [Nerd Font](https://ohmyposh.dev/docs/installation/fonts). These can be installed [manually](https://www.nerdfonts.com/), via `brew`, or via `oh-my-posh`. At the time of writing, I currently use JetBrains Mono:
 
 ```bash
 oh-my-posh font install JetBrainsMono
 ```
 
-### Unix Pre-Requisites
+### Required Packages
 
 - `gcc`
-    - I recommend using `build-essential`
 - `git`
 - `make`
-    - Install with `brew` on macOS
+- `stow`
 - `unzip`
 - `zsh`
-    - Comes pre-installed on macOS, if not use Homebrew
 
 Don't forget to change your shell to `zsh` if necessary. **Do not run the command as root!** You want to change your *user* shell:
 
@@ -44,7 +41,7 @@ chsh -s /usr/bin/zsh
 #### Arch Install Command
 
 ```bash
-sudo pacman -Syu gcc git make unzip zsh
+sudo pacman -Syu gcc git make stow unzip zsh
 ```
 
 #### Ubuntu Install Command
@@ -58,10 +55,12 @@ sudo apt update && sudo apt upgrade -y --fix-missing
 Then install the packages:
 
 ```bash
-sudo apt install build-essential git make unzip zsh
+sudo apt install build-essential git make stow unzip zsh
 ```
 
-### Required Packages
+### `zsh` Packages
+
+These are mostly commandline programs that are referenced by [`zshrc`](.zshrc), but some I just like.
 
 <details>
 
