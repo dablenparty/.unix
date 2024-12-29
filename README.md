@@ -2,33 +2,75 @@
 
 A collection of dotfiles I use on macOS and various Linux distros.
 
-## Installation
+## Components
 
-### General Pre-Requisites
+### `stow`
 
-First, you'll need a package manager or two:
-    - macOS: [Homebrew](https://brew.sh/)
-    - Linux: [Homebrew](https://brew.sh/)
-        - Arch can use `pacman`, but `brew` is still required for `oh-my-posh`
+None of this would be possible without `stow`. It creates symlinks to the home directory to make managing what gets used much easier. Install with your system package manager:
 
-Next, you'll need `oh-my-posh` for terminal customization. It gets installed via `brew` (even on Arch):
+<details>
+
+<summary>Arch</summary>
+
+```bash
+sudo pacman -S stow
+```
+
+</details>
+
+<details>
+
+<summary>macOS</summary>
+
+```bash
+brew install stow
+```
+
+</details>
+
+Then, simply clone this repo, `cd` into it, and run:
+
+```bash
+stow .
+```
+
+Specific folders must be enabled by `stow`'ing them. For example:
+
+```bash
+stow ghostty
+```
+
+### `oh-my-posh`
+
+Installs only with [Homebrew](https://brew.sh/):
 
 ```bash
 brew install jandedobbeleer/oh-my-posh/oh-my-posh
 ```
 
-The next thing you'll need is a [Nerd Font](https://ohmyposh.dev/docs/installation/fonts). These can be installed [manually](https://www.nerdfonts.com/), via `brew`, or via `oh-my-posh`. At the time of writing, I currently use JetBrains Mono:
+`oh-my-posh` can also be used to install nerd fonts:
 
 ```bash
 oh-my-posh font install JetBrainsMono
 ```
 
-### Required Packages
+### Terminal Emulator
+
+My current terminal emulator is [`ghostty`](https://ghostty.org). Previously, I used [`alacrirtty`](https://alacritty.org/index.html) and keep the files around as I'm still trying `ghostty` out.
+
+It requires the JetBrainsMono [Nerd Font](https://www.nerdfonts.com/font-downloads) to work properly with my config.
+
+### [`.zshrc`](.zshrc)
+
+`zsh` plugins are installed automatically via `zinit`.
+
+#### Required Packages
+
+These are used by `zinit` and other tools.
 
 - `gcc`
 - `git`
 - `make`
-- `stow`
 - `unzip`
 - `zsh`
 
@@ -38,13 +80,21 @@ Don't forget to change your shell to `zsh` if necessary. **Do not run the comman
 chsh -s /usr/bin/zsh
 ```
 
-#### Arch Install Command
+<details>
+
+<summary>Arch</summary>
+
+Update and install with one command:
 
 ```bash
-sudo pacman -Syu gcc git make stow unzip zsh
+sudo pacman -Syu gcc git make unzip zsh
 ```
 
-#### Ubuntu Install Command
+</details>
+
+<details>
+
+<summary>Ubuntu</summary>
 
 First, update your system:
 
@@ -55,12 +105,14 @@ sudo apt update && sudo apt upgrade -y --fix-missing
 Then install the packages:
 
 ```bash
-sudo apt install build-essential git make stow unzip zsh
+sudo apt install build-essential git unzip zsh
 ```
 
-### `zsh` Packages
+</details>
 
-These are mostly commandline programs that are referenced by [`zshrc`](.zshrc), but some I just like.
+#### CLI Tools
+
+Skip the words:
 
 <details>
 
@@ -89,7 +141,7 @@ brew install bat fd fzf lazygit lsd ripgrep zoxide
 - `fzf`
     - A *fuzzy* file finder.
 - `lazygit`
-    - My absolute favorite terminal-based git client. Also runs in neovim!
+    - My *favorite* terminal-based git client. Also runs in neovim!
 - `lsd`
     - An improved `ls` command.
 - `ripgrep`
@@ -97,7 +149,7 @@ brew install bat fd fzf lazygit lsd ripgrep zoxide
 - `zoxide`
     - `cd` replacement with fuzzy directory finding.
 
-#### Optional Packages
+#### Optional Packages/Tools
 
 These packages install tools that are used in this repository, but are not required for it to work.
 
@@ -105,8 +157,6 @@ These packages install tools that are used in this repository, but are not requi
     - Flutter toolkit.
 - `fnm`
     - Fast Node Manager. A fast, cross-platform Node version manager that works quite well with environments.
-- [`ghostty`](https://ghostty.org)
-    - My current choice of terminal emulator. I previously used [`alacrirtty`](https://alacritty.org/index.html).
 - `go`
     - Golang toolkit.
 - `jenv`
