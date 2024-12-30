@@ -93,7 +93,7 @@ alias la='lsd -a'
 alias lg='lazygit'
 alias cat='bat -p'
 # wrap neovim with zoxide for easier directory cd'ing
-znv() { if [[ $# -eq 1 && -e $1 ]]; then nvim "$1"; else nvim "$(zoxide query "$@")"; fi; }
+nvz() { if [[ $# -eq 1 && -e $1 ]]; then nvim "$1"; else nvim "$(zoxide query "$@")"; fi; }
 
 ## Shell integrations
 eval "$(zoxide init --cmd cd zsh)"
