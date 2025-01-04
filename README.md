@@ -48,7 +48,7 @@ Installs only with [Homebrew](https://brew.sh/):
 brew install jandedobbeleer/oh-my-posh/oh-my-posh
 ```
 
-`oh-my-posh` can also be used to install nerd fonts:
+`oh-my-posh` can also be used to install nerd fonts. For example:
 
 ```bash
 oh-my-posh font install JetBrainsMono
@@ -56,17 +56,15 @@ oh-my-posh font install JetBrainsMono
 
 ### Terminal Emulator
 
-My current terminal emulator is [`ghostty`](https://ghostty.org). Previously, I used [`alacrirtty`](https://alacritty.org/index.html) and keep the files around as I'm still trying `ghostty` out.
-
-It requires the JetBrainsMono [Nerd Font](https://www.nerdfonts.com/font-downloads) to work properly with my config.
+My current terminal emulator is [`ghostty`](https://ghostty.org). It requires the JetBrainsMono [Nerd Font](https://www.nerdfonts.com/font-downloads) to work properly with my config.
 
 ### [`.zshrc`](.zshrc)
 
 `zsh` plugins are installed automatically via `zinit`.
 
-#### Required Packages
+#### Pre-requisites
 
-These are used by `zinit` and other tools.
+These are used by `zinit` and other tools:
 
 - `gcc`
 - `git`
@@ -74,11 +72,7 @@ These are used by `zinit` and other tools.
 - `unzip`
 - `zsh`
 
-Don't forget to change your shell to `zsh` if necessary. **Do not run the command as root!** You want to change your *user* shell:
-
-```bash
-chsh -s /usr/bin/zsh
-```
+Install instructions:
 
 <details>
 
@@ -88,6 +82,18 @@ Update and install with one command:
 
 ```bash
 sudo pacman -Syu gcc git make unzip zsh
+```
+
+</details>
+
+<details>
+
+<summary>macOS</summary>
+
+Everything should come pre-installed on macOS. If not, use Homebrew to install whatever's missing:
+
+```bash
+brew install gcc git make unzip zsh
 ```
 
 </details>
@@ -109,6 +115,12 @@ sudo apt install build-essential git unzip zsh
 ```
 
 </details>
+
+> Don't forget to change your shell to `zsh` if necessary. **Do not run the command as root!** You want to change your _user_ shell:
+>
+> ```bash
+> chsh -s /usr/bin/zsh
+> ```
 
 #### CLI Tools
 
@@ -135,32 +147,33 @@ brew install bat fd fzf lazygit lsd ripgrep zoxide
 </details>
 
 - `bat`
-    - `cat` replacement with syntax highlighting, paging, and more.
+  - `cat` replacement with syntax highlighting, paging, and more.
 - `fd`
-    - A faster file finder.
+  - A faster file finder.
 - `fzf`
-    - A *fuzzy* file finder.
+  - A _fuzzy_ file finder.
 - `lazygit`
-    - My *favorite* terminal-based git client. Also runs in neovim!
+  - My _favorite_ terminal-based git client. Also runs in neovim!
 - `lsd`
-    - An improved `ls` command.
+  - An improved `ls` command.
 - `ripgrep`
-    - `grep` replacement that is faster and easier to use.
+  - `grep` replacement that is faster and easier to use.
 - `zoxide`
-    - `cd` replacement with fuzzy directory finding.
+  - `cd` replacement with fuzzy directory finding.
 
 #### Optional Packages/Tools
 
 These packages install tools that are used in this repository, but are not required for it to work.
 
 - `flutter`
-    - Flutter toolkit.
+  - Flutter toolkit.
 - `fnm`
-    - Fast Node Manager. A fast, cross-platform Node version manager that works quite well with environments.
+  - Fast Node Manager. A fast, cross-platform Node version manager that works quite well with environments.
 - `go`
-    - Golang toolkit.
+  - Golang toolkit.
 - `jenv`
-    - Manages the Java environment, making switching versions easy. Note: does **not** install Java, only manages installed versions.
+  - Manages the Java environment, making switching versions easy. Note: does **not** install Java, only manages installed versions.
+- [`neovim`](https://github.com/dablenparty/dablenparty.nvim)
+  - My favorite text editor. Follow the instructions in the linked repository, there are a few extra dependencies not found here.
 - `pyenv`
-    - A python version manager with support for virtual environments. I love how simple it is.
-
+  - A python version manager with support for virtual environments. I love how simple it is.
