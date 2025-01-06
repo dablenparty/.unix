@@ -1,4 +1,4 @@
-# Default stow ignore file
+### Default stow ignore file ###
 
 RCS
 .+,v
@@ -22,5 +22,10 @@ _darcs
 ^/LICENSE.*
 ^/COPYING
 
+### End default ###
+
 # Shell Scripts
 ^.+\.(ps1|sh|bat)$
+
+\.stowrc
+DS_Store
