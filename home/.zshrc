@@ -87,7 +87,7 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'lsd $realpath'
 
 # Aliases
 alias zshconfig="nvim \$HOME/.zshrc"
-alias ls='lsd'
+alias l='lsd'
 alias ll='lsd -hAlFg'
 alias la='lsd -a'
 alias lg='lazygit'
