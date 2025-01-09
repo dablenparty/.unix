@@ -94,7 +94,10 @@ alias lg='lazygit'
 # wrap cat with bat for colors and paging
 alias cat='bat -p'
 # wrap neovim with zoxide for easier directory cd'ing
-nvz() { if [[ $# -eq 1 && -e $1 ]]; then nvim "$1"; else nvim "$(zoxide query "$@")"; fi; }
+nvz() { if [[ $# -eq 1 && -e $1 ]]; then nvim "$1"; else
+  cd "$(zoxide query "$@")" || exit 1
+  nvim .
+fi; }
 
 ## Shell integrations
 eval "$(zoxide init --cmd cd zsh)"
