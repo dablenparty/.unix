@@ -1,3 +1,4 @@
+#!/bin/zsh
 # Check if homebrew is installed
 if [[ -f "/usr/local/bin/brew" ]]; then
   BREW_HOME="/usr/local/bin/brew"
