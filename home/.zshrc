@@ -85,8 +85,10 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 # disable default zsh completion menu
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza $realpath'
+
+preview_cmd="eza -a1 --color=always -I '.DS_Store' \$realpath"
+zstyle ':fzf-tab:complete:cd:*' fzf-preview "$preview_cmd"
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview "$preview_cmd"
 
 # Aliases
 alias zshconfig="nvim \$HOME/.zshrc"
