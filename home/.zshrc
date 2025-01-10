@@ -82,14 +82,14 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 # disable default zsh completion menu
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'lsd $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'lsd $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza $realpath'
 
 # Aliases
 alias zshconfig="nvim \$HOME/.zshrc"
-alias l='lsd'
-alias ll='lsd -hAlFg'
-alias la='lsd -a'
+alias l='eza'
+alias ll='eza -hal --git --smart-group'
+alias la='eza -a'
 alias lg='lazygit'
 # wrap cat with bat for colors and paging
 alias cat='bat -p'

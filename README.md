@@ -131,7 +131,7 @@ Skip the words:
 <summary>Arch</summary>
 
 ```bash
-sudo pacman -S bat fd fzf lazygit lsd ripgrep zoxide
+sudo pacman -S bat eza fd fzf lazygit ripgrep zoxide
 ```
 
 </details>
@@ -141,21 +141,21 @@ sudo pacman -S bat fd fzf lazygit lsd ripgrep zoxide
 <summary>Homebrew</summary>
 
 ```bash
-brew install bat fd fzf lazygit lsd ripgrep zoxide
+brew install bat eza fd fzf lazygit ripgrep zoxide
 ```
 
 </details>
 
 - `bat`
   - `cat` replacement with syntax highlighting, paging, and more.
+- `eza`
+  - An improved `ls` command.
 - `fd`
   - A faster file finder.
 - `fzf`
   - A _fuzzy_ file finder.
 - `lazygit`
   - My _favorite_ terminal-based git client. Also runs in neovim!
-- `lsd`
-  - An improved `ls` command.
 - `ripgrep`
   - `grep` replacement that is faster and easier to use.
 - `zoxide`
