@@ -36,10 +36,12 @@ fi
 source "$ZINIT_HOME/zinit.zsh"
 
 ## Add in zsh plugins
+# this must be first!
+zinit light Aloxaf/fzf-tab
+
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
-zinit light Aloxaf/fzf-tab
 
 ## Add in snippets
 zinit snippet OMZL::git.zsh
