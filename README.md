@@ -28,13 +28,7 @@ brew install stow
 
 </details>
 
-Then, simply clone this repo, `cd` into it, and run:
-
-```bash
-stow .
-```
-
-Specific folders must be enabled by `stow`'ing them. For example:
+Each folder is an individual "package". Anything loose or multi-platform (e.g. `oh-my-posh`) is in the [`home`](home/) package. ATW, config options are not respected and everything is stowed into `~`, so packages must replicate the directory structure they expect to use when `stow`ing. For example, the following command would stow `ghostty` at `~/.config/ghostty`:
 
 ```bash
 stow ghostty
@@ -59,6 +53,8 @@ oh-my-posh font install JetBrainsMono
 My current terminal emulator is [`ghostty`](https://ghostty.org). It requires the JetBrainsMono [Nerd Font](https://www.nerdfonts.com/font-downloads) to work properly with my config.
 
 ### [`.zshrc`](.zshrc)
+
+This is the single most important file in this repo, as well as the only requried one.
 
 `zsh` plugins are installed automatically via `zinit`.
 
@@ -116,7 +112,7 @@ sudo apt install build-essential git unzip zsh
 
 </details>
 
-> Don't forget to change your shell to `zsh` if necessary. **Do not run the command as root!** You want to change your _user_ shell:
+> [!important] Don't forget to change your shell to `zsh` if necessary. **Do not run the command as root!** You want to change your _user_ shell:
 >
 > ```bash
 > chsh -s /usr/bin/zsh
@@ -149,9 +145,9 @@ brew install bat eza fd fzf lazygit ripgrep zoxide
 - `bat`
   - `cat` replacement with syntax highlighting, paging, and more.
 - `eza`
-  - An improved `ls` command.
+  - An improved `ls` command. Replaced my use of `lsd` in this config.
 - `fd`
-  - A faster file finder.
+  - A _faster_ file finder.
 - `fzf`
   - A _fuzzy_ file finder.
 - `lazygit`
