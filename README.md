@@ -112,7 +112,8 @@ sudo apt install build-essential git unzip zsh
 
 </details>
 
-> [!important] Don't forget to change your shell to `zsh` if necessary. **Do not run the command as root!** You want to change your _user_ shell:
+> [!IMPORTANT]
+> Don't forget to change your shell to `zsh` if necessary. **Do not run the command as root!** You want to change your _user_ shell:
 >
 > ```bash
 > chsh -s /usr/bin/zsh
