@@ -5,7 +5,7 @@ background-blur-radius = 20
 
 # Font
 font-family = "JetBrainsMono NF"
-font-size = 15
+font-size = 14
 
 # Keybindings
 macos-option-as-alt = true
