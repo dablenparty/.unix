@@ -28,7 +28,7 @@ brew install stow
 
 </details>
 
-Each folder is an individual "package". Anything loose or multi-platform (e.g. `oh-my-posh`) is in the [`home`](home/) package. ATW, config options are not respected and everything is stowed into `~`, so packages must replicate the directory structure they expect to use when `stow`ing. For example, the following command would stow `ghostty` at `~/.config/ghostty`:
+Each folder is an individual "package". Anything loose or multi-platform (e.g. [`oh-my-posh`](home/zen.omp.toml)) is in the [`home`](home/) package. ATW, config options are not respected and everything is stowed into `~`, so packages must replicate the directory structure they expect to use when `stow`ing. For example, the following command would stow `ghostty` at `~/.config/ghostty`:
 
 ```bash
 stow ghostty
@@ -52,7 +52,7 @@ oh-my-posh font install JetBrainsMono
 
 My current terminal emulator is [`ghostty`](https://ghostty.org). It requires the JetBrainsMono [Nerd Font](https://www.nerdfonts.com/font-downloads) to work properly with my config.
 
-### [`.zshrc`](.zshrc)
+### [`.zshrc`](home/.zshrc)
 
 This is the single most important file in this repo, as well as the only requried one.
 
@@ -148,9 +148,9 @@ brew install bat eza fd fzf lazygit ripgrep zoxide
 - `eza`
   - An improved `ls` command. Replaced my use of `lsd` in this config.
 - `fd`
-  - A _faster_ file finder.
+  - A faster file finder.
 - `fzf`
-  - A _fuzzy_ file finder.
+  - A _fuzzy_ finder that works with almost anything.
 - `lazygit`
   - My _favorite_ terminal-based git client. Also runs in neovim!
 - `ripgrep`
