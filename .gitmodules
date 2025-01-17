@@ -1,3 +1,4 @@
 [submodule "neovim"]
 	path = neovim/.config/nvim
 	url = git@github.com:dablenparty/dablenparty.nvim.git
+	branch = master
