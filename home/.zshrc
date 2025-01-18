@@ -164,6 +164,12 @@ if [ -d "$FNM_PATH" ]; then
     # consider auto-installing them if they don't exist
     . "$FNM_PATH/_fnm.sh"
   fi
+
+  # add yarn globals to path
+  yarn_bin="$(yarn global bin)"
+  if [ -d "$yarn_bin" ]; then
+    export PATH="$(yarn global bin):$PATH"
+  fi
 fi
 
 # Golang
