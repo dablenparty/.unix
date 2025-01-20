@@ -119,7 +119,7 @@ if [[ -d $PYENV_ROOT/bin ]]; then
     git clone https://github.com/pyenv/pyenv-virtualenv.git "$(pyenv root)"/plugins/pyenv-virtualenv
   fi
 
-  eval "$(pyenv init -)"
+  eval "$(pyenv init - zsh)"
   eval "$(pyenv virtualenv-init -)"
 fi
 
