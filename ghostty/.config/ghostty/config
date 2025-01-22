@@ -5,7 +5,7 @@ background-blur-radius = 20
 
 # Font
 font-family = "JetBrainsMono NF"
-font-size = 14
+font-size = 16
 
 # Keybindings
 macos-option-as-alt = true
@@ -24,6 +24,8 @@ keybind = super+right=esc:OF
 keybind = alt+backspace=text:\x1b\x7f
 # backspace entire line
 keybind = super+backspace=text:\x15
+
+keybind = super+r>c=reload_config
 
 # Shell
 shell-integration-features = no-cursor,no-sudo,title
