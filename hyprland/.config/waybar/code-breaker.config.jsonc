@@ -16,7 +16,7 @@
     "backlight",
     "pulseaudio",
     "bluetooth",
-    "clock",
+    "clock"
   ],
   "pulseaudio": {
     "tooltip": false,
@@ -40,13 +40,14 @@
     "format-wifi": "  {essid}",
     "format-ethernet": ""
   },
-  "bluetooth": {
+"bluetooth": {
 	"format": " {status}",
-	"format-disabled": "", // an empty format will hide the module
-	"format-connected": " {num_connections} connected",
-	"tooltip-format": "{controller_alias}: {status}",
-	"tooltip-format-connected": "{controller_alias}: {status}\n\n{device_enumerate}",
-	"tooltip-format-enumerate-connected": "{device_alias}"
+	"format-connected": " {device_alias}",
+	"format-connected-battery": " {device_alias} {device_battery_percentage}%",
+	"tooltip-format": "{controller_alias}\n\n{num_connections} connected",
+	"tooltip-format-connected": "{controller_alias}\n\n{num_connections} connected:\n{device_enumerate}",
+	"tooltip-format-enumerate-connected": "{device_alias}",
+	"tooltip-format-enumerate-connected-battery": "{device_alias}: {device_battery_percentage}%"
 },
   "backlight": {
     "tooltip": false,
