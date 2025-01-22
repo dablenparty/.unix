@@ -40,15 +40,15 @@
     "format-wifi": "  {essid}",
     "format-ethernet": ""
   },
-"bluetooth": {
-	"format": " {status}",
-	"format-connected": " {device_alias}",
-	"format-connected-battery": " {device_alias} {device_battery_percentage}%",
-	"tooltip-format": "{controller_alias}\n\n{num_connections} connected",
-	"tooltip-format-connected": "{controller_alias}\n\n{num_connections} connected:\n{device_enumerate}",
-	"tooltip-format-enumerate-connected": "{device_alias}",
-	"tooltip-format-enumerate-connected-battery": "{device_alias}: {device_battery_percentage}%"
-},
+  "bluetooth": {
+    "format": " {status}",
+    "format-connected": " {device_alias}",
+    "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+    "tooltip-format": "{controller_alias}\n\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\n\n{num_connections} connected:\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}: {device_battery_percentage}%"
+  },
   "backlight": {
     "tooltip": false,
     "format": " {}%",
