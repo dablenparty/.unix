@@ -2,16 +2,20 @@
 
 TODO: all of this
 
-For now, just know you'll need to enable the experimental bluez features:
+For now, just know you'll need to enable the experimental `bluez` features:
 
-```shell
+```sh
 # /etc/bluetooth/main.conf
 # Add this line
 Experimental = true
 ```
 
-Then restart the service:
+as well as the following programs:
 
-```bash
-systemctl restart bluetooth
-```
+- `wofi`: App launcher
+- `waybar`: Top bar
+- `swaync`: Notification daemon
+- `hypridle`: Hyprland idler
+- `hyprlock`: Hyprland lock screen
+- `nwg-look`: GTK Theme Settings
+- `blueman`: Bluetooth applet
