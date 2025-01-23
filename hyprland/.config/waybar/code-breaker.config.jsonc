@@ -79,7 +79,8 @@
     "spacing": 10
   },
   "clock": {
-    "format": " {:%I:%M %p   %d/%m/%Y}"
+    "tooltip": false,
+    "format": " {:%I:%M %p  %d/%m/%Y}"
   },
   "cpu": {
     "interval": 15,
