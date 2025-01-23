@@ -20,7 +20,7 @@ on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/message.oga
 font=JetBrainsMono NF 12
 
 # background color of notification( #RRGGBB | #RRGGBBAA )
-background-color=#2e3440
+background-color=#161320
 
 # Text color inside the notification( #RRGGBB | #RRGGBBAA )
 text-color=#FFFFFF
@@ -84,7 +84,7 @@ default-timeout=5000
 # If set, mako will ignore the expire timeout(value: 0|1 )
 ignore-timeout=0
 
-# Set maximum number of visible notifications 
+# Set maximum number of visible notifications
 max-visible=5
 
 # Arrange mako at the specified layer, relative to normal windows.(value: background, bottom, top, overlay )
@@ -95,12 +95,15 @@ anchor=top-right
 
 [urgency=low]
 border-color=#cccccc
+text-color=#cccccc
 
 [urgency=normal]
-border-color=#d08770
+border-color=#6beb99
+text-color=#6beb99
 
 [urgency=high]
-border-color=#bf616a
+border-color=#f1606e
+text-color=#f1606e
 default-timeout=0
 
 [category=mpd]
