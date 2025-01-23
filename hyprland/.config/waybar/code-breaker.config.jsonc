@@ -98,8 +98,26 @@
     "max-length": 10
   },
   "mpris": {
-    "format": "{player_icon}{title} - {artist}",
-    "format-paused": "{status_icon}{title} - {artist}",
+    "format": "{player_icon}{dynamic}",
+    "format-paused": "{status_icon}{dynamic}",
+    "dynamic-importance-order": [
+      "title",
+      "artist",
+      "position",
+      "length",
+      "album"
+    ],
+    "dynamic-order": [
+      "length",
+      "title",
+      "artist",
+      "album",
+      "position"
+    ],
+    "dynamic-len": 80,
+    "title-len": 40,
+    "artist-len": 25,
+    "album-len": 25,
     "player-icons": {
       "spotify": " ",
       "vlc": "󰕼 ",
@@ -107,7 +125,8 @@
     },
     "status-icons": {
       "paused": "⏸ "
-    }
+    },
+    "max-length": 80
   },
   "custom/launcher": {
     "format": " ",

@@ -253,3 +253,8 @@ window#waybar.hidden {
 	color: #42e57c;
 	border: 2px solid #42e57c;
 }
+
+#mpris.firefox {
+	color: #F76F53;
+	border: 2px solid #F76F53;
+}
