@@ -137,7 +137,7 @@
     "format": "{} Update(s)",
     "exec": "checkupdates | wc -l",
     "exec-if": "[[ $(checkupdates | wc -l) != 0 ]]",
-    "interval": 15,
+    "interval": 3600,
     "on-click": "ghostty -e yay -Syu && notify-send -u critical --app-name yay 'The system has been updated' "
   }
 }
