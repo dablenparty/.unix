@@ -19,3 +19,6 @@ as well as the following programs:
 - `hyprlock`: Hyprland lock screen
 - `nwg-look`: GTK Theme Settings
 - `blueman`: Bluetooth applet
+
+> [!IMPORTANT] Be careful with `bluetoothctl`
+> Some of its subcommands can cause Hyprland to just... logout or crash. It's tracked by [this GitHub issue](https://github.com/bluez/bluez/issues/996).
