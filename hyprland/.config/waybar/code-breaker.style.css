@@ -231,7 +231,7 @@ window#waybar.hidden {
 	border: 2px solid #E8A2AF;
 }
 
-#custom-media {
+#mpris {
 	margin-top: 6px;
 	margin-left: 8px;
 	padding-left: 10px;
@@ -242,4 +242,14 @@ window#waybar.hidden {
 	color: #F2CDCD;
 	background: #161320;
 	border: 2px solid #F2CDCD;
+}
+
+#mpris.vlc {
+	color: #f3af59;
+	border: 2px solid #f3af59;
+}
+
+#mpris.spotify {
+	color: #42e57c;
+	border: 2px solid #42e57c;
 }

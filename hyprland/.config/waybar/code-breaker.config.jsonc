@@ -4,18 +4,18 @@
     "custom/launcher",
     "cpu",
     "memory",
-    "custom/media",
-    "tray"
+    "network",
+    "bluetooth",
+    "custom/updates"
   ],
   "modules-center": [
     "hyprland/workspaces"
   ],
   "modules-right": [
-    "custom/updates",
-    "custom/wallpaper",
+    "mpris",
     "backlight",
     "pulseaudio",
-    "bluetooth",
+    "tray",
     "clock"
   ],
   "pulseaudio": {
@@ -36,9 +36,14 @@
     "all-outputs": true
   },
   "network": {
-    "tooltip": false,
-    "format-wifi": "  {essid}",
-    "format-ethernet": ""
+    "format": "{ifname}",
+    "format-wifi": "  {essid} ({signalStrength}%)",
+    "format-ethernet": "  {ifname} ({bandwidthTotalBytes})",
+    "format-disconnected": "",
+    "tooltip-format": "{ifname} via {gwaddr}\n {bandwidthDownBits}  {bandwidthUpBits}",
+    "tooltip-format-disconnected": "Disconnected",
+    "interval": 2,
+    "max-length": 30
   },
   "bluetooth": {
     "format": " {status}",
@@ -92,37 +97,28 @@
     "format": " {}%",
     "max-length": 10
   },
-  "custom/media": {
-    "interval": 30,
-    "format": "{icon} {}",
-    "return-type": "json",
-    "max-length": 20,
-    "format-icons": {
+  "mpris": {
+    "format": "{player_icon}{title} - {artist}",
+    "format-paused": "{status_icon}{title} - {artist}",
+    "player-icons": {
       "spotify": " ",
+      "vlc": "󰕼 ",
       "default": " "
     },
-    "escape": true,
-    "exec": "$HOME/.config/system_scripts/mediaplayer.py 2> /dev/null",
-    "on-click": "playerctl play-pause"
+    "status-icons": {
+      "paused": "⏸ "
+    }
   },
   "custom/launcher": {
     "format": " ",
     "on-click": "wofi --show=drun",
     "on-click-right": "killall wofi"
   },
-  "custom/power": {
-    "format": " ",
-    "on-click": "bash ~/.config/wofi/leave/leave.sh"
-  },
   "custom/updates": {
     "format": "{} Update(s)",
     "exec": "checkupdates | wc -l",
     "exec-if": "[[ $(checkupdates | wc -l) != 0 ]]",
     "interval": 15,
-    "on-click": "alacritty -e paru -Syu && notify-send 'The system has been updated' "
-  },
-  "custom/wallpaper": {
-    "format": " ",
-    "on-click": "bash ~/.config/system_scripts/pkill_bc"
+    "on-click": "ghostty -e yay -Syu && notify-send -u critical --app-name yay 'The system has been updated' "
   }
 }
