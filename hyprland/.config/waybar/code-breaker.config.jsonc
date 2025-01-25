@@ -100,6 +100,7 @@
     "status-icons": {
       "paused": "⏸ "
     },
+    "interval": 1,
     "max-length": 80
   },
   "custom/launcher": {
