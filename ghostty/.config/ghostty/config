@@ -1,5 +1,7 @@
 # Theme
 theme = SpaceGray Bright
+# uncomment if you want to use pywal theme
+# theme = /home/hunterdavenport/.cache/wal/colors-ghostty.conf
 background-opacity = 0.8
 background-blur-radius = 20
 
