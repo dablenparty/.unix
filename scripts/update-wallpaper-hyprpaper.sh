@@ -12,6 +12,5 @@ hyprctl hyprpaper preload "$wallpaper"
 hyprctl hyprpaper wallpaper ",$wallpaper"
 
 # get the filename by removing the root
-new_wallpaper_name=$(echo "wallpaper" | sed "s|$wallpaper_root||g")
 
-notify-send -u normal --app-name hyprpaper "Successfully updated wallpaper and colors!" "Used $new_wallpaper_name"
+notify-send -u normal --app-name hyprpaper "Successfully updated wallpaper and colors!" "Used $(basename "$wallpaper")"
