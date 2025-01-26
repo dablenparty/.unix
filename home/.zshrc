@@ -20,7 +20,12 @@ eval "$(fzf --zsh)"
 
 # Initialize oh-my-posh, but not on Apple Terminal
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
-  eval "$(oh-my-posh init zsh --config "$HOME"/zen.omp.toml)"
+  if [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
+    config="$HOME/zen-wal.omp.toml"
+  else
+    config="$HOME/zen.omp.toml"
+  fi
+  eval "$(oh-my-posh init zsh --config "$config")"
 fi
 
 # Set the directory we want to store zinit and plugins
