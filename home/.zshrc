@@ -103,6 +103,11 @@ alias la='eza -a'
 alias lg='lazygit'
 # wrap cat with bat for colors and paging
 alias cat='bat -p'
+
+## Shell integrations
+eval "$(zoxide init --cmd cd zsh)"
+
+# neovim
 # wrap neovim with zoxide for easier directory cd'ing
 nvz() {
   if [[ $# -eq 1 && -e $1 ]]; then cd "$1" || exit 1; else
@@ -110,9 +115,8 @@ nvz() {
   fi
   nvim .
 }
-
-## Shell integrations
-eval "$(zoxide init --cmd cd zsh)"
+# for yazi
+export EDITOR=nvim
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
