@@ -1,14 +1,28 @@
+# TODO: colors
 echo 'Checking Hyprland for update...'
 
-hyprland_path="$HOME/Hyprland/"
-if [[ ! -d $hyprland_path ]]; then
-  echo "Failed to locate Hyprland installation at '$hyprland_path', make sure you cloned it properly!"
+if (($# == 1)); then
+  hyprland_path=$1
+elif (($# > 1)); then
+  echo 'usage: update_hyprland.sh [HYPRLAND_PATH]'
+  exit 1
+else
+  hyprland_path="$HOME/Hyprland/"
+fi
+
+if [[ ! -e "$hyprland_path/.git" ]]; then
+  echo "Failed to locate valid Hyprland repository at '$hyprland_path', make sure you cloned it properly!"
+  exit 1
 fi
 
 cd "$hyprland_path" || (printf "Failed to cd into %s" "$hyprland_path" && exit 1)
-
+hyprland_match_count="$(git remote get-url origin | rg --color=never --count 'Hyprland' || echo 0)"
 diff_count="$(git rev-list --count origin/main --not main)"
-if [[ "$diff_count" -le 0 ]]; then
+
+if (("$hyprland_match_count" < 1)); then
+  echo "Could not find Hyprland fetch url in '$hyprland_path'"
+  exit 1
+elif (("$diff_count" <= 0)); then
   echo 'Hyprland is up to date!'
   exit 0
 fi
