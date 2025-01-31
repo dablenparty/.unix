@@ -89,6 +89,6 @@ yay -S aquamarine-git \
   xorg-xwayland
 
 echo 'Updating Hyprland'
-git pull || exit 1
+git fetch && git pull || exit 1
 make all
 sudo make install
