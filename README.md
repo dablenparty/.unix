@@ -6,6 +6,9 @@ A collection of dotfiles I use on macOS and various Linux distros.
 
 ### `stow`
 
+> [!NOTE]
+> I have been developing an alternative to `stow` called [`boxunbox`](https://github.com/dablenparty/boxunbox) that is designed for this use case, but they are _not_ the same. Check it out!
+
 None of this would be possible without `stow`. It creates symlinks to the home directory to make managing what gets used much easier. Install with your system package manager:
 
 <details>
@@ -36,11 +39,21 @@ stow ghostty
 
 ### `oh-my-posh`
 
-Installs only with [Homebrew](https://brew.sh/):
+Installs with [Homebrew](https://brew.sh/):
 
 ```bash
 brew install jandedobbeleer/oh-my-posh/oh-my-posh
 ```
+
+or manually, with an [installation script](https://ohmyposh.dev/docs/installation/linux) (Linux only).
+
+<details>
+
+  <summary>Arch</summary>
+
+If you're using Arch Linux and don't want to use **Homebrew**, there is an [unofficial AUR package (`oh-my-posh-bin`)](https://aur.archlinux.org/packages/oh-my-posh-bin) that updates daily. Install that with whatever tool you prefer.
+
+</details>
 
 `oh-my-posh` can also be used to install nerd fonts. For example:
 
