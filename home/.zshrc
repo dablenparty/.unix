@@ -111,9 +111,12 @@ eval "$(zoxide init --cmd cd zsh)"
 # wrap neovim with zoxide for easier directory cd'ing
 nvz() {
   if [[ $# -eq 1 && -e $1 ]]; then cd "$1" || exit 1; else
-    cd "$(zoxide query "$@")" || exit 1
+    dir="$(zoxide query "$@")"
+    if [[ -d "$dir" ]]; then
+      cd "$dir" || exit 1
+      nvim .
+    fi
   fi
-  nvim .
 }
 # for yazi
 export EDITOR=nvim
