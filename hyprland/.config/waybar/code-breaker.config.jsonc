@@ -37,7 +37,7 @@
   "network": {
     "format": "{ifname}",
     "format-wifi": "  {essid} ({signalStrength}%)",
-    "format-ethernet": "  {ifname} ({bandwidthTotalBytes})",
+    "format-ethernet": "  {ifname} ({bandwidthTotalBits})",
     "format-disconnected": "",
     "tooltip-format": "{ifname} via {gwaddr}\n {bandwidthDownBits}  {bandwidthUpBits}",
     "tooltip-format-disconnected": "Disconnected",
