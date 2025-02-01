@@ -50,14 +50,14 @@ if (("$hyprland_match_count" < 1)); then
   echo "Could not find Hyprland fetch url in '$hyprland_path'"
   exit 1
 elif (("$diff_count" <= 0)); then
-  echo 'Hyprland is up to date!'
-  exit 0
-fi
-
-printf "You are %s commits behind.\n" "$diff_count"
-
-if ! wait_for_y_key "Would you like to update Hyprland? [Y\n]"; then
-  exit 0
+  if ! wait_for_y_key 'Hyprland is up-to-date, would you like to rebuild anyway? [Y\n]'; then
+    exit 0
+  fi
+else
+  printf "You are %s commits behind.\n" "$diff_count"
+  if ! wait_for_y_key "Would you like to update Hyprland? [Y\n]"; then
+    exit 0
+  fi
 fi
 
 echo 'Updating dependencies'
@@ -65,7 +65,8 @@ echo 'Updating dependencies'
 # keeping this script functional (once git pull is run, this won't find an
 # update).
 # if this gets out-of-date, check the list in your Obsidian vault
-yay -S --needed --asdeps --noconfirm cairo \
+# yay and pacman keep deleting these, so force them to be explicit installs
+yay -S --needed --asexplicit --noconfirm cairo \
   cmake \
   cpio \
   gcc \
