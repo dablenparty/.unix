@@ -118,6 +118,28 @@ nvz() {
     fi
   fi
 }
+
+nvf() {
+  if [[ $# -eq 1 && -e $1 ]]; then
+    nvim $1
+  elif [[ $# -ge 2 ]]; then
+    # given args such as nvz path dir file.txt, use zoxide query to locate "path dir" and then pipe that into fd to search for files and then to fzf with "file.txt" as the search term
+    z_args="${@:1:($# - 1)}"
+    file_arg="${@:$#}"
+    dir="$(zoxide query "$z_args")"
+    if [[ -d "$dir" ]]; then
+      cd "$dir" || exit 1
+      if [[ -f "$dir/$file_arg" ]]; then
+        nvim "$file_arg"
+      else
+        fd --type file --hidden --no-ignore-vcs --exclude .git | fzf -q "$file_arg" | xargs nvim
+      fi
+    fi
+  else
+    echo 'usage: nvf <DIR_QUERY>[...DIR_QUERY] <FILE_QUERY>'
+  fi
+}
+
 # for yazi
 export EDITOR=nvim
 
