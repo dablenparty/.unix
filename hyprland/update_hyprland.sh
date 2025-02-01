@@ -51,6 +51,7 @@ echo 'Updating dependencies'
 # keeping this script functional (once git pull is run, this won't find an
 # update).
 # if this gets out-of-date, check the list in your Obsidian vault
+# TODO: separate out dependencies & explicit packages (see man pacman)
 yay -S aquamarine-git \
   cairo \
   cmake \
