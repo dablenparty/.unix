@@ -6,6 +6,7 @@ wal --cols16 -q -t -s -n -i "$wallpaper_root"
 # load pywal colorscheme
 source "$HOME/.cache/wal/colors.sh"
 
+hyprctl hyprpaper unload all
 # $wallpaper should be loaded by the above script
 hyprctl hyprpaper preload "$wallpaper"
 # set globally
