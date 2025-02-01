@@ -1,3 +1,26 @@
+#!/bin/bash
+
+# wait for the y key, returning 0 when it is pressed
+wait_for_y_key() {
+  if [[ -n "$1" ]]; then
+    prompt="$1"
+  else
+    prompt="Would you like to continue? [Y\n]"
+  fi
+  read -p "$prompt" -r -s -n 1 key
+  printf '\n'
+
+  case $key in
+  y | Y) return 0 ;;
+  n | N)
+    return 1
+    ;;
+  *)
+    return 1
+    ;;
+  esac
+}
+
 # TODO: colors
 echo 'Checking Hyprland for update...'
 
@@ -33,37 +56,23 @@ fi
 
 printf "You are %s commits behind.\n" "$diff_count"
 
-read -p "Would you like to update Hyprland? [Y\n]" -r -s -n 1 key
-printf '\n'
-
-case $key in
-y | Y) ;;
-n | N)
+if ! wait_for_y_key "Would you like to update Hyprland? [Y\n]"; then
   exit 0
-  ;;
-*)
-  echo "Invalid input."
-  ;;
-esac
+fi
 
 echo 'Updating dependencies'
 # dependencies are done first in case the install needs to be aborted while
 # keeping this script functional (once git pull is run, this won't find an
 # update).
 # if this gets out-of-date, check the list in your Obsidian vault
-# TODO: separate out dependencies & explicit packages (see man pacman)
-yay -S aquamarine-git \
-  cairo \
+yay -S --needed --asdeps --noconfirm cairo \
   cmake \
   cpio \
-  egl-wayland \
   gcc \
   glaze \
-  kitty \
   hyprcursor-git \
   hyprgraphics-git \
   hyprlang-git \
-  hyprpolkitagent-git \
   hyprutils-git \
   hyprwayland-scanner-git \
   libdisplay-info \
@@ -79,10 +88,6 @@ yay -S aquamarine-git \
   ninja \
   pango \
   pixman \
-  qt5-wayland \
-  qt6-wayland \
-  seatd \
-  uwsm \
   tomlplusplus \
   wayland-protocols \
   xcb-proto \
@@ -90,8 +95,21 @@ yay -S aquamarine-git \
   xcb-util-errors \
   xcb-util-keysyms \
   xcb-util-wm \
-  xdg-desktop-portal-hyprland-git \
   xorg-xwayland
+
+yay -S --needed --noconfirm aquamarine-git \
+  egl-wayland \
+  kitty \
+  hyprpolkitagent-git \
+  qt5-wayland \
+  qt6-wayland \
+  seatd \
+  uwsm \
+  xdg-desktop-portal-hyprland-git
+
+if wait_for_y_key "Clean build? [Y\n]"; then
+  make clear
+fi
 
 echo 'Updating Hyprland'
 git pull || exit 1
