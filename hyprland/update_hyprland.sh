@@ -15,10 +15,14 @@ if [[ ! -e "$hyprland_path/.git" ]]; then
   exit 1
 fi
 
+# cd into Hyprland and fetch from the remote
 cd "$hyprland_path" || (printf "Failed to cd into %s" "$hyprland_path" && exit 1)
+git fetch
+
 hyprland_match_count="$(git remote get-url origin | rg --color=never --count 'Hyprland' || echo 0)"
 diff_count="$(git rev-list --count origin/main --not main)"
 
+# if the remote URL doesn't include the word 'Hyprland', it's probably not the right folder
 if (("$hyprland_match_count" < 1)); then
   echo "Could not find Hyprland fetch url in '$hyprland_path'"
   exit 1
@@ -89,6 +93,6 @@ yay -S aquamarine-git \
   xorg-xwayland
 
 echo 'Updating Hyprland'
-git fetch && git pull || exit 1
+git pull || exit 1
 make all
 sudo make install
