@@ -1,4 +1,6 @@
 PackageConfig(
     target: "/etc/pacman.d/hooks",
-    ignore_pats: [],
+    ignore_pats: [
+        "\\.unboxrc(\\.ron)?$",
+    ],
 )
