@@ -5,8 +5,7 @@
     "cpu",
     "memory",
     "network",
-    "bluetooth",
-    "custom/updates"
+    "bluetooth"
   ],
   "modules-center": [
     "hyprland/workspaces"
@@ -108,11 +107,4 @@
     "on-click": "wofi --show=drun",
     "on-click-right": "killall wofi"
   },
-  "custom/updates": {
-    "format": "{} Update(s)",
-    "exec": "checkupdates | wc -l",
-    "exec-if": "[[ $(checkupdates | wc -l) != 0 ]]",
-    "interval": 3600,
-    "on-click": "ghostty -e yay -Syu && notify-send 'The system has been updated' "
-  }
 }
