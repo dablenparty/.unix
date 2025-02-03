@@ -75,8 +75,8 @@ echo 'Updating dependencies in 3 seconds...'
 sleep 3 # wait so the user can read the message
 
 # if this gets out-of-date, check the list in your Obsidian vault
-# yay and pacman keep deleting these, so force them to be explicit installs
-yay -S --needed --asexplicit --noconfirm cairo \
+# pacman keeps deleting these, so force them to be explicit installs
+paru -S --needed --asexplicit cairo \
   cmake \
   cpio \
   gcc \
@@ -108,7 +108,7 @@ yay -S --needed --asexplicit --noconfirm cairo \
   xcb-util-wm \
   xorg-xwayland
 
-yay -S --needed --noconfirm aquamarine-git \
+paru -S --needed aquamarine-git \
   egl-wayland \
   kitty \
   hyprpolkitagent-git \
