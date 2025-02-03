@@ -34,36 +34,46 @@ else
 fi
 
 if [[ ! -e "$hyprland_path/.git" ]]; then
-  echo "Failed to locate valid Hyprland repository at '$hyprland_path', make sure you cloned it properly!"
+  echo "Failed to locate valid git repository at '$hyprland_path', make sure you cloned it properly!"
   exit 1
 fi
 
 # cd into Hyprland and fetch from the remote
 cd "$hyprland_path" || (printf "Failed to cd into %s" "$hyprland_path" && exit 1)
-git fetch
+git fetch --all
 
 hyprland_match_count="$(git remote get-url origin | rg --color=never --count 'Hyprland' || echo 0)"
-diff_count="$(git rev-list --count origin/main --not main)"
-
 # if the remote URL doesn't include the word 'Hyprland', it's probably not the right folder
 if (("$hyprland_match_count" < 1)); then
   echo "Could not find Hyprland fetch url in '$hyprland_path'"
   exit 1
-elif (("$diff_count" <= 0)); then
-  if ! wait_for_y_key 'Hyprland is up-to-date, would you like to rebuild anyway? [Y\n]'; then
-    exit 0
-  fi
-else
-  printf "You are %s commits behind.\n" "$diff_count"
-  if ! wait_for_y_key "Would you like to update Hyprland? [Y\n]"; then
-    exit 0
-  fi
 fi
 
-echo 'Updating dependencies'
-# dependencies are done first in case the install needs to be aborted while
-# keeping this script functional (once git pull is run, this won't find an
-# update).
+# Get the current branch name
+local_branch="$(git rev-parse --abbrev-ref HEAD)"
+
+# Construct the upstream branch name
+upstream_branch="origin/$local_branch"
+
+# Check if there are updates available by comparing commit hashes
+latest_commit_local="$(git rev-parse HEAD)"
+latest_commit_remote="$(git rev-parse "$upstream_branch")"
+
+if [[ "$latest_commit_remote" == "$latest_commit_local" ]]; then
+  echo 'Hyprland is up-to-date!'
+  exit 0
+fi
+
+diff_count="$(git rev-list --count "$upstream_branch" --not "$local_branch")"
+echo "You are $diff_count commits behind"
+
+if ! wait_for_y_key "Would you like to update? [Y\n]"; then
+  exit 0
+fi
+
+echo 'Updating dependencies in 3 seconds...'
+sleep 3 # wait so the user can read the message
+
 # if this gets out-of-date, check the list in your Obsidian vault
 # yay and pacman keep deleting these, so force them to be explicit installs
 yay -S --needed --asexplicit --noconfirm cairo \
@@ -108,11 +118,10 @@ yay -S --needed --noconfirm aquamarine-git \
   uwsm \
   xdg-desktop-portal-hyprland-git
 
-if wait_for_y_key "Clean build? [Y\n]"; then
-  make clear
-fi
-
 echo 'Updating Hyprland'
-git pull || exit 1
+git pull origin "$local_branch" || exit 1
 make all
 sudo make install
+
+git rev-parse HEAD >"$hyprland_path/last_succesful_build_commit"
+echo 'Successfully updated and installed Hyprland!'
