@@ -1,0 +1,7 @@
+PackageConfig(
+    target: "~/.config/rofi",
+    ignore_pats: [
+        "\\.unboxrc(\\.ron)?$",
+    ],
+    use_relative_links: false,
+)
