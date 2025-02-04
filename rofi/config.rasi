@@ -155,3 +155,5 @@ configuration {
       sorting-method:    "name";
   }
 }
+
+@import "~/.cache/wal/colors-rofi-dark"
