@@ -157,3 +157,4 @@ configuration {
 }
 
 @import "~/.cache/wal/colors-rofi-dark"
+@import "zen-style"
