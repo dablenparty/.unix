@@ -120,8 +120,10 @@ paru -S --needed --asexplicit aquamarine-git \
 
 echo 'Updating Hyprland'
 git pull origin "$local_branch" || exit 1
+git submodule update --remote --recursive --rebase || exit 1
 make all
 sudo make install
 
-git rev-parse HEAD >"$hyprland_path/last_succesful_build_commit"
+date_str="BUILD_COMMIT $(date +"%a %b %d %Y %H-%M-%S")"
+git rev-parse HEAD >"$hyprland_path/$date_str"
 echo 'Successfully updated and installed Hyprland!'
