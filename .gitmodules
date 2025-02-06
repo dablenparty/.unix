@@ -2,3 +2,6 @@
 	path = neovim.bak.d/.config/nvim
 	url = git@github.com:dablenparty/dablenparty.nvim.git
 	branch = master
+[submodule ".neovim"]
+	path = neovim
+	url = git@github.com:dablenparty/.neovim.git
