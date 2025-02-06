@@ -76,7 +76,7 @@ sleep 3 # wait so the user can read the message
 
 # if this gets out-of-date, check the list in your Obsidian vault
 # pacman keeps deleting these, so force them to be explicit installs
-paru -S --needed --asexplicit cairo \
+paru -S --needed --asdeps cairo \
   cmake \
   cpio \
   gcc \
@@ -108,7 +108,7 @@ paru -S --needed --asexplicit cairo \
   xcb-util-wm \
   xorg-xwayland
 
-paru -S --needed aquamarine-git \
+paru -S --needed --asexplicit aquamarine-git \
   egl-wayland \
   kitty \
   hyprpolkitagent-git \
