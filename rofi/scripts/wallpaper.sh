@@ -7,11 +7,12 @@ if [[ ! -d "$wallpaper_root" ]]; then
   exit 1
 fi
 
-# TODO: actually fix the wallpaper icons
-selected_wallpaper="$(eza --color=never --oneline "$wallpaper_root" | xargs -I% echo -en "%\0icon\x1f%\n" | rofi -dmenu -i -show-icons -p "Wallpaper")"
+# read into an array for index access later
+readarray -t all_files <<<"$(fd -tf --color=never --absolute-path . "$wallpaper_root")"
+selected_idx="$(for p in "${all_files[@]}"; do echo -en "$(basename "$p")\0icon\x1f$p\n"; done | rofi -dmenu -format "i" -i -show-icons -p "Wallpaper")"
 
-if [[ -z "$selected_wallpaper" ]]; then
+if [[ -z "$selected_idx" ]]; then
   exit 0
 fi
 
-"$HOME/update-wallpaper-hyprpaper.sh" "$selected_wallpaper" &>/dev/null
+"$HOME/update-wallpaper-hyprpaper.sh" "${all_files[$selected_idx]}" &>/dev/null
