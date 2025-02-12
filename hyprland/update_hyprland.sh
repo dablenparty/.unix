@@ -11,7 +11,7 @@ wait_for_y_key() {
   printf '\n'
 
   case $key in
-  y | Y) return 0 ;;
+  y | Y | "") return 0 ;;
   n | N)
     return 1
     ;;
@@ -71,52 +71,51 @@ if ! wait_for_y_key "Would you like to update? [Y\n]"; then
   exit 0
 fi
 
-echo 'Updating dependencies in 3 seconds...'
-sleep 3 # wait so the user can read the message
+if wait_for_y_key "Update dependencies? [Y\n]"; then
+  echo 'Updating dependencies'
+  # if this gets out-of-date, check the list in your Obsidian vault or the Hyprland docs
+  paru -S --needed --asdeps cairo \
+    cmake \
+    cpio \
+    gcc \
+    glaze \
+    hyprcursor-git \
+    hyprgraphics-git \
+    hyprlang-git \
+    hyprutils-git \
+    hyprwayland-scanner-git \
+    libdisplay-info \
+    libinput \
+    libliftoff \
+    libx11 \
+    libxcb \
+    libxcomposite \
+    libxfixes \
+    libxkbcommon \
+    libxrender \
+    meson \
+    ninja \
+    pango \
+    pixman \
+    tomlplusplus \
+    wayland-protocols \
+    xcb-proto \
+    xcb-util \
+    xcb-util-errors \
+    xcb-util-keysyms \
+    xcb-util-wm \
+    xorg-xwayland
 
-# if this gets out-of-date, check the list in your Obsidian vault
-# pacman keeps deleting these, so force them to be explicit installs
-paru -S --needed --asdeps cairo \
-  cmake \
-  cpio \
-  gcc \
-  glaze \
-  hyprcursor-git \
-  hyprgraphics-git \
-  hyprlang-git \
-  hyprutils-git \
-  hyprwayland-scanner-git \
-  libdisplay-info \
-  libinput \
-  libliftoff \
-  libx11 \
-  libxcb \
-  libxcomposite \
-  libxfixes \
-  libxkbcommon \
-  libxrender \
-  meson \
-  ninja \
-  pango \
-  pixman \
-  tomlplusplus \
-  wayland-protocols \
-  xcb-proto \
-  xcb-util \
-  xcb-util-errors \
-  xcb-util-keysyms \
-  xcb-util-wm \
-  xorg-xwayland
-
-paru -S --needed --asexplicit aquamarine-git \
-  egl-wayland \
-  kitty \
-  hyprpolkitagent-git \
-  qt5-wayland \
-  qt6-wayland \
-  seatd \
-  uwsm \
-  xdg-desktop-portal-hyprland-git
+  paru -S --needed --asexplicit aquamarine-git \
+    egl-wayland \
+    kitty \
+    hyprpolkitagent-git \
+    qt5-wayland \
+    qt6-wayland \
+    seatd \
+    uwsm \
+    xdg-desktop-portal-hyprland-git
+fi
 
 echo 'Updating Hyprland'
 git pull origin "$local_branch" || exit 1
