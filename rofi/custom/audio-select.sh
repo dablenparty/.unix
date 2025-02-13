@@ -9,3 +9,5 @@ for input in $inputs; do
 done
 
 pactl set-default-sink "$source"
+# TODO: get device.description for this instead
+notify-send "Successfully set audio device" "$source"
