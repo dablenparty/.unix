@@ -4,38 +4,20 @@ A collection of dotfiles I use on macOS and various Linux distros.
 
 ## Components
 
-### `stow`
+### `boxunbox`
 
 > [!NOTE]
-> I have been developing an alternative to `stow` called [`boxunbox`](https://github.com/dablenparty/boxunbox) that is designed for this use case, but they are _not_ the same. Check it out!
+> Shameless plug: I have been developing an alternative to GNU `stow` for fun called [`boxunbox`](https://github.com/dablenparty/boxunbox). It is designed for my use case, so they are _not_ the same. Check it out!
 
-None of this would be possible without `stow`. It creates symlinks to the home directory to make managing what gets used much easier. Install with your system package manager:
+I no longer use GNU `stow` to manage my dotfiles. Instead I use my own tool: `boxunbox`. It is a lot like `stow`, but _only symlinks files_. I found this to be better for my own personal use case.
 
-<details>
-
-<summary>Arch</summary>
+Each folder is an individual "package". Anything loose or multi-platform (e.g. [`oh-my-posh`](home/zen.omp.toml)) is in the [`home`](home/) package. Linking a package is easy; just unbox it:
 
 ```bash
-sudo pacman -S stow
+unbox home
 ```
 
-</details>
-
-<details>
-
-<summary>macOS</summary>
-
-```bash
-brew install stow
-```
-
-</details>
-
-Each folder is an individual "package". Anything loose or multi-platform (e.g. [`oh-my-posh`](home/zen.omp.toml)) is in the [`home`](home/) package. ATW, config options are not respected and everything is stowed into `~`, so packages must replicate the directory structure they expect to use when `stow`ing. For example, the following command would stow `ghostty` at `~/.config/ghostty`:
-
-```bash
-stow ghostty
-```
+And that's it! The `.unboxrc.ron` file(s) takes care of the rest.
 
 ### `oh-my-posh`
 
