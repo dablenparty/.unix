@@ -20,7 +20,7 @@ eval "$(fzf --zsh)"
 
 # Initialize oh-my-posh, but not on Apple Terminal
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
-  if [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
+  if [[ "$XDG_CURRENT_DESKTOP" == "Hyprland" ]]; then
     config="$HOME/zen-wal.omp.toml"
   else
     config="$HOME/zen.omp.toml"
