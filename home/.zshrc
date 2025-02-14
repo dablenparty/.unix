@@ -37,6 +37,10 @@ if [ ! -d "$ZINIT_HOME" ]; then
   git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
+# force bad syntax to be highlighted red no matter the color scheme
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=160'
+
 ## Source/Load zinit
 source "$ZINIT_HOME/zinit.zsh"
 
