@@ -1,14 +1,17 @@
+[general]
+import = ["~/.cache/wal/colors-alacritty.toml"]
+live_config_reload = true
+
 [window]
-opacity = 0.8
+opacity = 0.9
 blur = true
 
 [font]
-# TODO: consider JetBrains Mono Nerd Font
 normal = { family = "JetBrainsMono NF", style = "Regular" }
 bold = { style = "Bold" }
 italic = { style = "Italic" }
 bold_italic = { style = "Bold Italic" }
-size = 15
+size = 16
 
 [keyboard]
 bindings = [
