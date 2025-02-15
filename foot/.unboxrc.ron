@@ -1,5 +1,5 @@
 PackageConfig(
-    target: "~/.config/foot",
+    target: "$XDG_CONFIG_HOME/foot",
     ignore_pats: [
         "\\.unboxrc(\\.ron)?$",
         "^\\.git.*$",
