@@ -3,8 +3,10 @@ import = ["~/.cache/wal/colors-alacritty.toml"]
 live_config_reload = true
 
 [window]
-opacity = 0.9
 blur = true
+dynamic_padding = true
+opacity = 0.85
+padding = { x = 8, y = 8 }
 
 [font]
 normal = { family = "JetBrainsMono NF", style = "Regular" }
