@@ -45,7 +45,7 @@ oh-my-posh font install JetBrainsMono
 
 ### Terminal Emulator
 
-My current terminal emulator on macOS is [`ghostty`](https://ghostty.org) and [`alacritty`](https://alacritty.org/) on Linux. They both require the JetBrainsMono [Nerd Font](https://www.nerdfonts.com/font-downloads) to work properly with my config.
+My current terminal emulator on macOS is [`ghostty`](https://ghostty.org) and [`foot`](https://alacritty.org/) on Linux. They both require the JetBrainsMono [Nerd Font](https://www.nerdfonts.com/font-downloads) to work properly with my config.
 
 I have tried using one cross-platform emulator at a time for a while now; it simply isn't working. Separate emulators for separate OS's is much easier for me.
 
