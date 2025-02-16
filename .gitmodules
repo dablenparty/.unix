@@ -1,7 +1,3 @@
-[submodule "neovim"]
-	path = neovim
-	url = git@github.com:dablenparty/dablenparty.nvim.git
-	branch = master
 [submodule ".hyprland"]
 	path = hyprland
 	url = git@github.com:dablenparty/.hyprland.git
