@@ -147,20 +147,6 @@ nvf() {
 # for yazi
 export EDITOR=nvim
 
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-if [[ -d $PYENV_ROOT/bin ]]; then
-  export PATH="$PYENV_ROOT/bin:$PATH"
-
-  # install pyenv-virtualenv if not installed
-  if [[ ! -d "$PYENV_ROOT/plugins/pyenv-virtualenv" ]]; then
-    git clone https://github.com/pyenv/pyenv-virtualenv.git "$(pyenv root)"/plugins/pyenv-virtualenv
-  fi
-
-  eval "$(pyenv init - zsh)"
-  eval "$(pyenv virtualenv-init -)"
-fi
-
 # jenv
 JENV_PATH="$HOME/.jenv/bin"
 if [[ -d "$JENV_PATH" ]]; then
