@@ -1,13 +1,11 @@
 # Theme
-theme = SpaceGray Bright
-# uncomment if you want to use pywal theme
-# theme = /home/hunterdavenport/.cache/wal/colors-ghostty.conf
-background-opacity = 0.8
+theme = xcodedark
+background-opacity = 0.85
 background-blur-radius = 20
 
 # Font
 font-family = "JetBrainsMono NF"
-font-size = 16
+font-size = 14
 
 # Keybindings
 macos-option-as-alt = true
@@ -21,7 +19,7 @@ keybind = alt+right=esc:F
 # jump to end of line (macOS only)
 keybind = super+right=esc:OF
 
-# Using esc: action doesn't work for sending multiple sequences yet
+# NOTE: Using esc: action doesn't work for sending multiple sequences yet
 # backspace last word
 keybind = alt+backspace=text:\x1b\x7f
 # backspace entire line
