@@ -1,4 +1,8 @@
 #!/bin/zsh
+
+# syntax highlighting in manpages
+export MANPAGER="less -R --use-color -Dd+r -Du+b"
+
 # Check if homebrew is installed
 if [[ -f "/usr/local/bin/brew" ]]; then
   eval "$("/usr/local/bin/brew" shellenv)"
