@@ -1,20 +1,16 @@
 #!/bin/zsh
 # Check if homebrew is installed
 if [[ -f "/usr/local/bin/brew" ]]; then
-  BREW_HOME="/usr/local/bin/brew"
+  eval "$("/usr/local/bin/brew" shellenv)"
 elif [[ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
-  BREW_HOME="/home/linuxbrew/.linuxbrew/bin/brew"
-# Apple Silicon
-elif [[ -f "/opt/homebrew/bin/brew" ]]; then
-  BREW_HOME="/opt/homebrew/bin/brew"
-fi
-
-if [[ -n "$BREW_HOME" ]]; then
-  eval "$($BREW_HOME shellenv)"
+  eval "$("/home/linuxbrew/.linuxbrew/bin/brew" shellenv)"
+# # Apple Silicon
+# elif [[ -f "/opt/homebrew/bin/brew" ]]; then
+#   eval "$("/opt/homebrew/bin/brew" shellenv)"
 fi
 
 # fzf fuzzy finder
-export FZF_DEFAULT_COMMAND="fd --type file --hidden --no-ignore-vcs --exclude .git"
+export FZF_DEFAULT_COMMAND="fd -uuu -tf --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 eval "$(fzf --zsh)"
 
@@ -28,40 +24,48 @@ if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
   eval "$(oh-my-posh init zsh --config "$config")"
 fi
 
-# Set the directory we want to store zinit and plugins
-ZINIT_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/zinit/zinit.git"
-
-# Download Zinit, if it's not there yet
-if [ ! -d "$ZINIT_HOME" ]; then
-  mkdir -p "$(dirname "$ZINIT_HOME")"
-  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-fi
-
 # force bad syntax to be highlighted red no matter the color scheme
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=160'
 
-## Source/Load zinit
-source "$ZINIT_HOME/zinit.zsh"
+ZCOMET_HOME="${ZDOTDIR:-${HOME}}/.zcomet/bin"
+# Clone zcomet if necessary
+if [[ ! -f "$ZCOMET_HOME/zcomet.zsh" ]]; then
+  command git clone https://github.com/agkozak/zcomet.git "$ZCOMET_HOME"
+fi
+
+source "$ZCOMET_HOME/zcomet.zsh"
 
 ## Add in zsh plugins
 # this must be first!
-zinit light Aloxaf/fzf-tab
-
-zinit light zsh-users/zsh-syntax-highlighting
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
+zcomet load Aloxaf/fzf-tab
 
 ## Add in snippets
-zinit snippet OMZL::git.zsh
-zinit snippet OMZP::git
-zinit snippet OMZP::sudo
-zinit snippet OMZP::command-not-found
+zcomet snippet OMZ::plugins/git/git.plugin.zsh
+zcomet snippet OMZ::plugins/sudo/sudo.plugin.zsh
+zcomet snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
 
-## Load completions
-autoload -Uz compinit && compinit
+# load these last
+zcomet load zsh-users/zsh-syntax-highlighting
+zcomet load zsh-users/zsh-autosuggestions
 
-zinit cdreplay -q
+zcomet load zsh-users/zsh-completions
+zcomet compinit
+
+## Completion styling
+
+# case insensitive match
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
+# shows ls colors in completions
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+
+# disable default zsh completion menu
+zstyle ':completion:*' menu no
+
+preview_cmd="eza -a1 --color=always -I '.DS_Store' \$realpath"
+zstyle ':fzf-tab:complete:cd:*' fzf-preview "$preview_cmd"
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview "$preview_cmd"
 
 ## Keybindings
 bindkey -e
@@ -83,21 +87,6 @@ setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
-
-## Completion styling
-
-# case insensitive match
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-
-# shows ls colors in completions
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-
-# disable default zsh completion menu
-zstyle ':completion:*' menu no
-
-preview_cmd="eza -a1 --color=always -I '.DS_Store' \$realpath"
-zstyle ':fzf-tab:complete:cd:*' fzf-preview "$preview_cmd"
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview "$preview_cmd"
 
 # Aliases
 alias zshconfig="nvim \$HOME/.zshrc"
