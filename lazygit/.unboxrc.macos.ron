@@ -1,0 +1,10 @@
+PackageConfig(
+    target: "~/Library/Application Support/lazygit",
+    ignore_pats: [
+        "\\.unboxrc.*$",
+        "^\\.git.*$",
+        "^(README|LICEN[CS]E|COPYING).*$",
+    ],
+    link_root: false,
+    use_relative_links: false,
+)
