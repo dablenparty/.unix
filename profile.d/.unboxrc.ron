@@ -1,7 +1,7 @@
 PackageConfig(
     target: "/etc/profile.d",
     ignore_pats: [
-        "\\.unboxrc(\\.ron)?$",
+        "\\.unboxrc.*$",
         "^\\.git.*$",
         "^(README|LICEN[CS]E|COPYING).*$",
     ],

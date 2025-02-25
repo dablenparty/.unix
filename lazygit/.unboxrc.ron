@@ -1,7 +1,7 @@
 PackageConfig(
-    target: "$XDG_CONFIG_HOME/lazygit",
+    target: "${XDG_CONFIG_HOME:-~/.config}/lazygit",
     ignore_pats: [
-        "\\.unboxrc(\\.ron)?$",
+        "\\.unboxrc.*$",
         "^\\.git.*$",
         "^(README|LICEN[CS]E|COPYING).*$",
     ],

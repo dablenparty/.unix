@@ -1,6 +1,6 @@
 PackageConfig(
     target: "/etc",
     ignore_pats: [
-        "\\.unboxrc(\\.ron)?$",
+        "\\.unboxrc.*$",
     ],
 )
