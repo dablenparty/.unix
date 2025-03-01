@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
-# syntax highlighting in manpages
-export MANPAGER="less -R --use-color -Dd+r -Du+b"
+# syntax highlighting and toc (`gO`) in manpages
+export MANPAGER="nvim +Man!"
 
 # Check if homebrew is installed
 if [[ -f "/usr/local/bin/brew" ]]; then
