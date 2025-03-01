@@ -20,8 +20,13 @@ wait_for_y_key() {
   esac
 }
 
-rustup toolchain update nightly
 paru
+
+if wait_for_y_key "Update rustup? (Nightly always updates) [Y\n]"; then
+  rustup update
+else
+  rustup toolchain update nightly
+fi
 
 if wait_for_y_key "Update Hyprland? [Y\n]"; then
   bash "$(readlink "$HOME/update_hyprland.sh")"
