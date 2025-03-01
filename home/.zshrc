@@ -101,6 +101,11 @@ alias lg='lazygit'
 # wrap cat with bat for colors and paging
 alias cat='bat -p'
 
+# alias bash help because I script a lot
+help() {
+  /usr/bin/env bash -c "builtin help $*"
+}
+
 ## Shell integrations
 eval "$(zoxide init --cmd cd zsh)"
 
