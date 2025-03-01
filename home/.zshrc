@@ -14,7 +14,7 @@ elif [[ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
 fi
 
 # fzf fuzzy finder
-export FZF_DEFAULT_COMMAND="fd -uuu -tf --exclude .git"
+export FZF_DEFAULT_COMMAND="fd -uuu -tf -tl --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 eval "$(fzf --zsh)"
 
