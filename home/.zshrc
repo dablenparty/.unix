@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 # syntax highlighting in manpages
 export MANPAGER="less -R --use-color -Dd+r -Du+b"
