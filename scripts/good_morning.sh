@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 wait_for_y_key() {
   if [[ -n "$1" ]]; then
