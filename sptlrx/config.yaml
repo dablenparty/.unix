@@ -1,0 +1,6 @@
+player: mpris
+ignoreErrors: true
+mpris:
+  players: []
+local:
+  folder: "~/Music/.lyrics"
