@@ -21,7 +21,7 @@ eval "$(fzf --zsh)"
 # Initialize oh-my-posh, but not on Apple Terminal
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
   if [[ "$XDG_CURRENT_DESKTOP" == "Hyprland" ]]; then
-    config="$HOME/zen-wal.omp.toml"
+    config="$HOME/.cache/wal/zen-wal.omp.toml"
   else
     config="$HOME/zen.omp.toml"
   fi
