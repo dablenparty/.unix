@@ -110,6 +110,9 @@ alias l='eza --icons=auto'
 alias ll='eza --icons=auto -hal --git --smart-group'
 alias la='eza --icons=auto -a'
 alias lg='lazygit'
+alias tree='eza --icons=auto -T'
+# show a file tree sorted by size
+alias stree='eza --icons=auto -laThs=size --total-size --no-permissions --no-user --no-time'
 # wrap cat with bat for colors and paging
 alias cat='bat -p'
 
@@ -131,8 +134,8 @@ nvz() {
   fi
     if [[ -d "$dir" ]]; then
       cd "$dir" || exit 1
-    fi
       nvim .
+    fi
 }
 
 # for yazi
