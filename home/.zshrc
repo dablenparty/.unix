@@ -106,7 +106,6 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 # Aliases
-alias zshconfig="nvim \$HOME/.zshrc"
 alias l='eza --icons=auto'
 alias ll='eza --icons=auto -hal --git --smart-group'
 alias la='eza --icons=auto -a'
