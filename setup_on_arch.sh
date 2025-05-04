@@ -35,22 +35,26 @@ sudo pacman --overwrite "*" --needed --noconfirm -S \
 
 # I don't like installing rustup with pacman, it makes using cargo as
 # a package manager a bit difficult.
-echo "setting up rustup"
+echo "installing rustup"
 eval "$(curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs)"
 source "$HOME/.cargo/env"
 
+echo "installing Rust toolchains"
 rustup toolchain install stable
 rustup toolchain install nightly
 rustup default stable
 rustup component add rust-analyzer
 
-read -rep "git username: " git_username
-read -rep "git email: " git_email
-
 echo "setting git config"
+read -rep "git username: " git_username
+printf "\n"
 git config --global user.name "$git_username"
+
+read -rep "git email: " git_email
+printf "\n"
 git config --global user.email "$git_email"
 
+echo "installing boxunbox"
 boxunbox_path="$HOME/Documents/repos/boxunbox"
 # make parent dir(s)
 mkdir -vp "${boxunbox_path%/*}"
