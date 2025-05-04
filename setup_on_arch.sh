@@ -1,6 +1,23 @@
 #!/usr/bin/env bash
 #shellcheck disable=1091
 
+set -euo pipefail
+
+echo "Before continuing, please make sure your system is up-to-date."
+echo "    sudo pacman -Syu"
+read -rp "Continue? [Y\n]" -n 1 key
+printf "\n"
+
+case $key in
+y | Y | "")
+  echo "Beginning installation..."
+  ;;
+*)
+  echo "aborting..."
+  exit 0
+  ;;
+esac
+
 echo "installing dependencies"
 sudo pacman --overwrite "*" --needed --noconfirm -S \
   base-devel \
