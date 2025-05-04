@@ -53,7 +53,7 @@ git config --global user.email "$git_email"
 
 boxunbox_path="$HOME/Documents/repos/boxunbox"
 # make parent dir(s)
-mkdir -p "${boxunbox_path%/*}"
+mkdir -vp "${boxunbox_path%/*}"
 git clone https://github.com/dablenparty/boxunbox.git "$boxunbox_path"
 cargo install --path "$boxunbox_path"
 
