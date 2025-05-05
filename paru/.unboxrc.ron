@@ -1,6 +1,11 @@
 PackageConfig(
-    target: "/etc",
+    target: "$HOME/.config/paru",
     ignore_pats: [
-        "\\.unboxrc.*$",
+        "\\.unboxrc(\\.ron)?$",
+        "^\\.git.*$",
+        "^(README|LICEN[CS]E|COPYING).*$",
     ],
+    link_root: false,
+    no_create_dirs: true,
+    use_relative_links: false,
 )
