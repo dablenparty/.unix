@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #shellcheck disable=1091
 
-set -euo pipefail
+set -eo pipefail
 
 echo "Before continuing, please make sure your system is up-to-date."
 echo "    sudo pacman -Syu"
