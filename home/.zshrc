@@ -106,6 +106,11 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 # Aliases
+# add -v to coreutils so that they always explain what they're doing
+alias cp='cp -v'
+alias mv='mv -v'
+alias rm='rm -v'
+
 alias l='eza --icons=auto'
 alias ll='eza --icons=auto -hal --git --smart-group'
 alias la='eza --icons=auto -a'
