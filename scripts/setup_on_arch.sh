@@ -64,22 +64,6 @@ read -rep "git email: " git_email
 printf "\n"
 git config --global user.email "$git_email"
 
-echo "temp installing boxunbox"
-boxunbox_path="$HOME/Documents/repos/boxunbox"
-# make parent dir(s)
-mkdir -vp "${boxunbox_path%/*}"
-git clone https://github.com/dablenparty/boxunbox.git "$boxunbox_path"
-cargo build --release
-
-force_unbox() {
-  if (($# < 1)); then
-    echo "usage: $0 <package_dir> [package_dirs...]" 1>&2
-    return 1
-  fi
-  unbox_bin="$boxunbox_path/target/release/unbox"
-  "$unbox_bin" --force "$@"
-}
-
 echo "installing AUR helper: paru"
 paru_path="$HOME/aur/paru"
 sudo pacman --noconfirm --needed -S base-devel
@@ -95,9 +79,10 @@ paru --gendb
 echo "installing dotfiles"
 dotfiles_path="$HOME/dotfiles"
 modules_to_unbox=(home lazygit makepkg neovim pacman paru yazi)
-# TODO: once boxunbox is in the AUR, install it here
+# there are duplicates here, but that's what --needed is for
 paru --needed --noconfirm -S \
   bat \
+  boxunbox \
   eza \
   fd \
   fnm \
@@ -110,6 +95,7 @@ paru --needed --noconfirm -S \
   oh-my-posh-bin \
   neovim \
   ripgrep \
+  ttf-jetbrains-mono-nerd \
   unzip \
   zoxide \
   zsh
@@ -117,9 +103,7 @@ git clone https://github.com/dablenparty/.unix.git "$dotfiles_path"
 cd "$dotfiles_path" || exit 1
 git submodule update --init --remote --rebase neovim
 cd "$ORIG_DIR" || exit 1
-force_unbox "${modules_to_unbox[@]}"
-
-paru --needed --noconfirm -S oh-my-posh-bin
+unbox --force "${modules_to_unbox[@]}"
 
 echo "installing gaming dependencies"
 paru --noconfirm --needed -S wine \
@@ -139,3 +123,5 @@ paru --needed --noconfirm --asexplicit -S \
   obsidian \
   syncthingtray-qt6 \
   syncthing
+
+echo "Installation complete! Make sure you double-check which pacman hooks you actually need and reboot when you're done!"
