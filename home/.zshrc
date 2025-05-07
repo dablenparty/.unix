@@ -121,6 +121,11 @@ alias stree='eza --icons=auto -laThs=size --total-size --no-permissions --no-use
 # wrap cat with bat for colors and paging
 alias cat='bat -p'
 
+# for whatever reason, aliasing this doesn't register it as a valid alias
+tetris() {
+  autoload -Uz tetriscurses && tetriscurses
+}
+
 # alias bash help because I script a lot
 help() {
   /usr/bin/env bash -c "builtin help $*"
