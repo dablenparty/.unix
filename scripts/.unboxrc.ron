@@ -1,0 +1,13 @@
+PackageConfig(
+    target: "/usr/local/bin",
+    ignore_pats: [
+        "\\.unboxrc.*$",
+        "^\\.git.*$",
+        "^(README|LICEN[CS]E|COPYING).*$",
+        "^setup_on_arch\\..*$"
+    ],
+    link_root: false,
+    no_create_dirs: false,
+    use_relative_links: false,
+    use_hard_links: false,
+)
