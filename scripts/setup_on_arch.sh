@@ -5,8 +5,7 @@ set -eo pipefail
 
 echo "Before continuing, please make sure your system is up-to-date."
 echo "    sudo pacman -Syu"
-read -rp "Continue? [Y\n]" -n 1 key
-printf "\n"
+read -rp "Continue? [Y\n]"$'\n' -n 1 key
 
 # save the original dir for undoing cd commands
 ORIG_DIR="$PWD"
@@ -56,12 +55,10 @@ rustup default stable
 rustup component add rust-analyzer
 
 echo "setting git config"
-read -rep "git username: " git_username
-printf "\n"
+read -rep $'git username:\n' git_username
 git config --global user.name "$git_username"
 
-read -rep "git email: " git_email
-printf "\n"
+read -rep $'git email:\n' git_email
 git config --global user.email "$git_email"
 
 echo "installing AUR helper: paru"
