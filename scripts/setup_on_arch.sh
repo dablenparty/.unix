@@ -28,7 +28,7 @@ tar -xvf "$cachy_tar_path" -C /tmp
 sudo "$cachy_extract_path"/cachyos-repo.sh
 
 echo "installing dependencies"
-sudo pacman --overwrite "*" --needed --noconfirm -S \
+sudo pacman --overwrite "*" --noconfirm -S \
   base-devel \
   cmake \
   curl \
@@ -38,32 +38,22 @@ sudo pacman --overwrite "*" --needed --noconfirm -S \
   ntfs-3g \
   pacman-contrib \
   ripgrep \
+  rust \
   unzip \
   yazi \
   zsh
 
-# I don't like installing rustup with pacman, it makes using cargo as
-# a package manager a bit difficult.
-echo "installing rustup"
-eval "$(curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs)"
-source "$HOME/.cargo/env"
-
-echo "installing Rust toolchains"
-rustup toolchain install stable
-rustup toolchain install nightly
-rustup default stable
-rustup component add rust-analyzer
-
 echo "setting git config"
-read -rep $'git username:\n' git_username
+read -rep 'git username: ' git_username
+printf '\n'
 git config --global user.name "$git_username"
-
-read -rep $'git email:\n' git_email
+read -rep 'git email: ' git_email
+printf '\n'
 git config --global user.email "$git_email"
 
 echo "installing AUR helper: paru"
 paru_path="$HOME/aur/paru"
-sudo pacman --noconfirm --needed -S base-devel
+mkdir -vp "$paru_path"
 git clone https://aur.archlinux.org/paru.git "$paru_path"
 cd "$paru_path" || exit 1
 # paru is a Rust project and I don't use any crazy custom RUSTFLAGS,
@@ -75,7 +65,8 @@ paru --gendb
 
 echo "installing dotfiles"
 dotfiles_path="$HOME/dotfiles"
-modules_to_unbox=(home lazygit makepkg neovim pacman paru yazi)
+mkdir -vp "$dotfiles_path"
+modules_to_unbox=(home lazygit makepkg neovim paru yazi)
 # there are duplicates here, but that's what --needed is for
 paru --needed --noconfirm -S \
   bat \
@@ -99,11 +90,11 @@ paru --needed --noconfirm -S \
 git clone https://github.com/dablenparty/.unix.git "$dotfiles_path"
 cd "$dotfiles_path" || exit 1
 git submodule update --init --remote --rebase neovim
-cd "$ORIG_DIR" || exit 1
 unbox --force "${modules_to_unbox[@]}"
+cd "$ORIG_DIR" || exit 1
 
 echo "installing gaming dependencies"
-paru --noconfirm --needed -S wine \
+paru --noconfirm -S wine \
   wine-gecko \
   wine-mono \
   pipewire-pulse \
@@ -113,7 +104,7 @@ paru --noconfirm --needed -S wine \
   xdg-desktop-portal-kde
 
 # steam must be installed after all the Wine stuff
-paru --noconfirm --needed --rebuild=all -S steam
+paru --noconfirm --rebuild=all -S steam
 
 echo "installing extras"
 paru --needed --noconfirm --asexplicit -S \
@@ -121,4 +112,15 @@ paru --needed --noconfirm --asexplicit -S \
   syncthingtray-qt6 \
   syncthing
 
-echo "Installation complete! Make sure you double-check which pacman hooks you actually need and reboot when you're done!"
+echo "installing rustup from rustup.rs"
+paru -Rus rust
+eval "$(curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs)"
+source "$HOME/.cargo/env"
+
+echo "installing Rust toolchains"
+rustup toolchain install stable
+rustup toolchain install nightly
+rustup default stable
+rustup component add rust-analyzer
+
+echo "Installation complete! Make sure you double-check pacman and reboot when you're done!"
