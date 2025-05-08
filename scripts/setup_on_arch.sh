@@ -44,12 +44,13 @@ sudo pacman --overwrite "*" --noconfirm -S \
   zsh
 
 echo "setting git config"
+git config --global init.defaultBranch main
 read -rep 'git username: ' git_username
-printf '\n'
 git config --global user.name "$git_username"
 read -rep 'git email: ' git_email
-printf '\n'
 git config --global user.email "$git_email"
+
+# TODO: add ssh setup
 
 echo "installing AUR helper: paru"
 paru_path="$HOME/aur/paru"
