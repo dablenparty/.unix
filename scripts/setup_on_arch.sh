@@ -36,6 +36,7 @@ sudo pacman --overwrite "*" --noconfirm -S \
   git \
   man-db \
   ntfs-3g \
+  openssh \
   pacman-contrib \
   ripgrep \
   rust \
@@ -50,7 +51,12 @@ git config --global user.name "$git_username"
 read -rep 'git email: ' git_email
 git config --global user.email "$git_email"
 
-# TODO: add ssh setup
+echo "creating ssh keys (you have to install them yourself)"
+ssh_home="$HOME/.ssh"
+mkdir -vp "$ssh_home"
+ssh-keygen -t ed25519 -f "$ssh_home/github" -P "" -C "$git_email"
+ssh-keygen -t rsa -f "$ssh_home/aur" -P ""
+ssh-keygen -t rsa -f "$ssh_home/couchlab" -P ""
 
 echo "installing AUR helper: paru"
 paru_path="$HOME/aur/paru"
