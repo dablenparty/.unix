@@ -20,13 +20,6 @@ y | Y | "")
   ;;
 esac
 
-echo "installing CachyOS repos"
-cachy_tar_path=/tmp/cachyos-repo.tar.xz
-cachy_extract_path=/tmp/cachyos-repo
-curl https://mirror.cachyos.org/cachyos-repo.tar.xz -o "$cachy_tar_path"
-tar -xvf "$cachy_tar_path" -C /tmp
-sudo "$cachy_extract_path"/cachyos-repo.sh
-
 echo "installing dependencies"
 sudo pacman --overwrite "*" --noconfirm -S \
   base-devel \
