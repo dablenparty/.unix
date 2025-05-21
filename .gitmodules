@@ -1,9 +1,9 @@
 [submodule ".hyprland"]
 	path = hyprland
-	url = https://github.com/dablenparty/.hyprland.git
+	url = ../../dablenparty/.hyprland.git
 [submodule ".neovim"]
 	path = neovim
-	url = https://github.com/dablenparty/.neovim.git
+	url = ../../dablenparty/.neovim.git
 [submodule ".portainer"]
 	path = portainer
-	url = https://github.com/dablenparty/.portainer.git
+	url = ../../dablenparty/.portainer.git
