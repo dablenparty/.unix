@@ -158,15 +158,6 @@ if [[ -d "$JENV_PATH" ]]; then
   eval "$(jenv init -)"
 fi
 
-# flutter & dart
-FLUTTER_PATH="$HOME/.flutter/flutter"
-if [ -d "$FLUTTER_PATH" ]; then
-  export PATH="$PATH":"$HOME/.pub-cache/bin":"$FLUTTER_PATH/bin"
-  if [[ -f "$HOME/.dart-cli-completion/zsh-config.zsh" ]]; then
-    . "$HOME/.dart-cli-completion/zsh-config.zsh"
-  fi
-fi
-
 # fnm (node)
 # modified from fnm install script: https://github.com/Schniz/fnm/blob/master/.ci/install.sh
 OS="$(uname -s)"
