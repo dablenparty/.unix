@@ -14,6 +14,7 @@ option_update_rustup=false
 while getopts "chnr" opt; do
   case $opt in
   c)
+    # TODO: specify -c twice to reboot couchlab
     option_update_couchlab=true
     ;;
   h)
@@ -44,11 +45,9 @@ else
   rustup toolchain update nightly
 fi
 
-paru_cmd=""
+paru_args=(paru -Syu --sudoloop)
 if [[ $option_noconfirm = true ]]; then
-  paru_cmd="paru -Syu --noconfirm --sudoloop"
-else
-  paru_cmd="paru -Syu --sudoloop"
+  paru_args+=(--noconfirm)
 fi
 
 # NOTE: paru has an issue that causes it to exit with code 2 when using a custom PKGBUILD.
@@ -56,10 +55,10 @@ fi
 # When it's fixed, I should remove this workaround.
 # see: https://github.com/Morganamilo/paru/issues/1234
 set +e
-eval "$paru_cmd"
+"${paru_args[@]}"
 set -e
 if [[ $option_update_couchlab = true ]]; then
-  ssh -tt couchlab "$paru_cmd; systemctl reboot"
+  ssh -tt couchlab "${paru_args[*]}; systemctl reboot"
 fi
 
 echo "Don't forget to reboot!"
