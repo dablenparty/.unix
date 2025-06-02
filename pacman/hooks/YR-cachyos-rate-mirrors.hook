@@ -1,0 +1,11 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = *mirrorlist
+
+[Action]
+Description = Updating pacman mirrorlist with cachyos-rate-mirrors...
+When = PostTransaction
+Depends = cachyos-rate-mirrors
+Exec = /bin/bash -c 'cachyos-rate-mirrors'

@@ -1,0 +1,12 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Type = Path
+Target = *
+
+[Action]
+Description = Syncing file system on /...
+When = PostTransaction
+Depends = coreutils
+Exec = /usr/bin/env sync --file-system /
