@@ -25,6 +25,7 @@ sudo pacman --overwrite "*" --noconfirm -S \
   base-devel \
   cmake \
   curl \
+  devtools \
   gcc \
   git \
   man-db \
