@@ -1,0 +1,10 @@
+target = "~/.config/cava"
+exclude = [
+    '\.bub\.toml$',
+    '^\.git.*$',
+    '\.unboxrc.*$',
+    "^(README|LICEN[CS]E|COPYING).*$",
+]
+include = []
+link_root = false
+link_type = "absolute"

@@ -1,0 +1,11 @@
+target = "~/.config/paru"
+exclude = [
+    '\.unboxrc(\.ron)?$',
+    "^(README|LICEN[CS]E|COPYING).*$",
+    '\.bub\.toml$',
+    '^\.git.*$',
+    '\.unboxrc.*$',
+]
+include = []
+link_root = false
+link_type = "absolute"

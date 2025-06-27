@@ -1,0 +1,10 @@
+target = "~/.config/btop"
+exclude = [
+    "^(README|LICEN[CS]E|COPYING).*$",
+    '\.unboxrc.*$',
+    '\.bub\.toml$',
+    '^\.git.*$',
+]
+include = []
+link_root = false
+link_type = "absolute"

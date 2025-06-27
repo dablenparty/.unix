@@ -1,9 +1,0 @@
-PackageConfig(
-    target: "/etc/profile.d",
-    ignore_pats: [
-        "\\.unboxrc.*$",
-        "^\\.git.*$",
-        "^(README|LICEN[CS]E|COPYING).*$",
-    ],
-    use_relative_links: false,
-)

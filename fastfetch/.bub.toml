@@ -1,0 +1,10 @@
+target = "~/.config/fastfetch"
+exclude = [
+    '^\.git.*$',
+    "^(README|LICEN[CS]E|COPYING).*$",
+    '\.unboxrc.*$',
+    '\.bub\.toml$',
+]
+include = []
+link_root = false
+link_type = "absolute"

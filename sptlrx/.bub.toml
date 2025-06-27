@@ -1,0 +1,10 @@
+target = "~/.config/sptlrx"
+exclude = [
+    '\.bub\.toml$',
+    '\.unboxrc.*$',
+    "^(README|LICEN[CS]E|COPYING).*$",
+    '^\.git.*$',
+]
+include = []
+link_root = false
+link_type = "absolute"

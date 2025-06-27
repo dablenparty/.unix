@@ -1,6 +1,0 @@
-PackageConfig(
-    target: "/etc",
-    ignore_pats: [
-        "\\.unboxrc.*$",
-    ],
-)

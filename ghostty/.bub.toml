@@ -1,0 +1,10 @@
+target = "~/.config/ghostty"
+exclude = [
+    '^\.git.*$',
+    '\.unboxrc.*$',
+    '\.bub\.toml$',
+    "^(README|LICEN[CS]E|COPYING).*$",
+]
+include = []
+link_root = false
+link_type = "absolute"

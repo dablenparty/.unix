@@ -1,6 +1,0 @@
-PackageConfig(
-    target: "/etc/pacman.d/include",
-    ignore_pats: [
-        "\\.unboxrc.*$",
-    ],
-)
