@@ -1,0 +1,68 @@
+# [user] should be set in ~/.gitconfig
+[core]
+  compression = 9
+  # warn on trailing spaces
+  whitespace = error
+  # load index into memory
+  preloadindex = true
+  pager = delta
+
+[url "git@github.com:dablenparty/"]
+  insteadOf = "ghdab:"
+
+[url "git@github.com:"]
+  insteadOf = "github:"
+
+[url "git@forgejo-ssh.couchlab.me:dablenparty/"]
+  insteadOf = "forgejo:"
+
+[init]
+  defaultBranch = main
+
+[interactive]
+  diffFilter = delta --color-only
+  # don't require pressing enter for interactive prompts
+  singlekey = true
+
+[delta]
+  navigate = true
+  dark = true
+
+[merge]
+  conflictstyle = zdiff3
+
+[diff]
+  context = 3
+  renames = copies
+  interHunkContext = 10
+
+[status]
+  branch = true
+  showStash = true
+  showUntrackedFiles = all
+
+[push]
+  # no more "missing origin" when pushing new branches
+  autoSetupRemote = true
+  default = current
+  # push tags
+  followTags = true
+
+[pull]
+  default = current
+  rebase = true
+
+[rebase]
+  # stash unstaged changes
+  autoStash = true
+  missingCommitsChecks = warn
+
+[log]
+  abbrevCommit = true
+  graphColors = blue,yellow,cyan,magenta,green,red
+
+[color.decorate]
+    HEAD = red
+    branch = blue
+    tag = yellow
+    remoteBranch = magenta

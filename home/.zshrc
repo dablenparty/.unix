@@ -58,7 +58,6 @@ source "$ZCOMET_HOME/zcomet.zsh"
 zcomet load Aloxaf/fzf-tab
 
 ## Add in snippets
-zcomet snippet OMZ::plugins/git/git.plugin.zsh
 zcomet snippet OMZ::plugins/sudo/sudo.plugin.zsh
 zcomet snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
 
@@ -120,6 +119,27 @@ alias tree='eza --icons=auto -T'
 alias stree='eza --icons=auto -laThs=size --total-size --no-permissions --no-user --no-time'
 # wrap cat with bat for colors and paging
 alias cat='bat -p'
+
+# Aliases: git
+alias ga='git add'
+alias gap='ga --patch'
+alias gb='git branch'
+alias gba='gb --all'
+alias gc='git commit'
+alias gca='gc --amend --no-edit'
+alias gce='gc --amend'
+alias gco='git checkout'
+alias gcl='git clone --recursive'
+alias gd='git diff --output-indicator-new=" " --output-indicator-old=" "'
+alias gds='gd --staged'
+alias gi='git init'
+alias gl='git log --graph --all --pretty=format:"%C(magenta)%h %C(white) %an  %ar%C(auto)  %D%n%s%n"'
+alias gm='git merge'
+alias gn='git checkout -b'  # new branch
+alias gp='git push'
+alias gr='git reset'
+alias gs='git status --short'
+alias gu='git pull'
 
 # for whatever reason, aliasing this doesn't register it as a valid alias
 tetris() {
