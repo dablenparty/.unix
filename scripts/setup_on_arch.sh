@@ -115,7 +115,7 @@ paru --needed --noconfirm --asexplicit -S \
 
 echo "installing rustup from rustup.rs"
 paru -Rus rust
-eval "$(curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs)"
+eval "${ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs; }"
 source "$HOME/.cargo/env"
 
 echo "installing Rust toolchains"
