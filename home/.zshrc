@@ -106,13 +106,14 @@ setopt hist_find_no_dups
 # Aliases
 # add -v to coreutils so that they always explain what they're doing
 alias cp='cp -v'
+alias mkdir='mkdir -v'
 alias mv='mv -v'
 alias rm='rm -v'
 
+# Aliases: eza
 alias l='eza --icons=auto'
 alias ll='eza --icons=auto -hal --git --smart-group'
 alias la='eza --icons=auto -a'
-alias lg='lazygit'
 alias tree='eza --icons=auto -T'
 # show a file tree sorted by size
 alias stree='eza --icons=auto -laThs=size --total-size --no-permissions --no-user --no-time'
@@ -139,6 +140,7 @@ alias gp='git push'
 alias gr='git reset'
 alias gs='git status --short'
 alias gu='git pull'
+alias lg='lazygit'
 
 # for whatever reason, aliasing this doesn't register it as a valid alias
 tetris() {
