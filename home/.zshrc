@@ -58,7 +58,6 @@ source "$ZCOMET_HOME/zcomet.zsh"
 zcomet load Aloxaf/fzf-tab
 
 ## Add in snippets
-zcomet snippet OMZ::plugins/sudo/sudo.plugin.zsh
 zcomet snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
 
 # load these last
