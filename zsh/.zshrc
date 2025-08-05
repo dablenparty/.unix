@@ -172,6 +172,9 @@ nvz() {
 # for yazi
 export EDITOR=nvim
 
+# TODO: dynamically load files
+conf_dir="${ZDOTDIR:-$HOME}/zconfs"
+
 # jenv
 JENV_PATH="$HOME/.jenv/bin"
 if [[ -d "$JENV_PATH" ]]; then
