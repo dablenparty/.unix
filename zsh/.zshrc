@@ -172,8 +172,11 @@ nvz() {
 # for yazi
 export EDITOR=nvim
 
-# TODO: dynamically load files
+# iterate over all files ending with .zsh, failing silently if nothing is found
 conf_dir="${ZDOTDIR:-$HOME}/zconfs"
+for conf in "$conf_dir/"**/*.zsh(N); do
+  source "$conf"
+done
 
 # jenv
 JENV_PATH="$HOME/.jenv/bin"
