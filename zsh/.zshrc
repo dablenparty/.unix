@@ -140,7 +140,7 @@ alias gp='git push'
 alias gr='git reset'
 alias gs='git status --short'
 alias gu='git pull'
-alias lg='lazygit'
+alias ng='nvim +NeogitStandalone'
 
 # for whatever reason, aliasing this doesn't register it as a valid alias
 tetris() {
