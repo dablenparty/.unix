@@ -155,18 +155,14 @@ help() {
 ## Shell integrations
 eval "$(zoxide init --cmd cd zsh)"
 
-# neovim
-# wrap neovim with zoxide for easier directory cd'ing
+# neovim + zoxide
 nvz() {
-  if [[ $# -eq 1 && -e $1 ]]; then
-    dir="$1"
-  else
-    dir="$(zoxide query "$@")"
-  fi
-    if [[ -d "$dir" ]]; then
-      cd "$dir" || exit 1
-      nvim .
-    fi
+  cd "$(zoxide query "$@")" && nvim
+}
+
+# yazi + zoxide
+yz() {
+  cd "$(zoxide query "$@")" && yazi
 }
 
 # for yazi
