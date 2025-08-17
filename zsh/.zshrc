@@ -1,6 +1,8 @@
 #!/usr/bin/env zsh
 
-# syntax highlighting and toc (`gO`) in manpages
+# for yazi
+export EDITOR=nvim
+# syntax highlighting and table-of-contents (`gO`) in manpages
 export MANPAGER="nvim +Man!"
 
 # Check if homebrew is installed
@@ -44,6 +46,9 @@ zcomet load zsh-users/zsh-autosuggestions
 
 zcomet load zsh-users/zsh-completions
 zcomet compinit
+
+# NOTE: must come AFTER compinit
+eval "$(zoxide init --cmd cd zsh)"
 
 ## Completion styling
 
@@ -104,7 +109,40 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
-# Aliases
+## Functions & Aliases
+# Functions
+# alias bash help because I script a lot
+function help() {
+  /usr/bin/env bash -c "builtin help $*"
+}
+
+# for whatever reason, aliasing this doesn't register it as a valid alias
+function tetris() {
+  autoload -Uz tetriscurses && tetriscurses
+}
+
+# helper function that can wrap any arbitrary command with zoxide
+function zz() {
+  if (($# < 2)); then
+    echo "error: expected at least 2 arguments, got $#" 1>&2
+    return 2
+  fi
+
+  prog="$1"
+  # remove prog from arglist
+  shift 1
+
+  if [[ $# -eq 1 && -e $1 ]]; then
+    dir="$1"
+  else
+    dir="$(zoxide query "$@")"
+  fi
+
+  cd "$dir" || return 1
+  command "$prog"
+}
+
+# Aliases: coreutils
 # add -v to coreutils so that they always explain what they're doing
 alias cp='cp -v'
 alias mkdir='mkdir -v'
@@ -113,11 +151,12 @@ alias rm='rm -v'
 
 # Aliases: eza
 alias l='eza --icons=auto'
-alias ll='eza --icons=auto -hal --git --smart-group'
-alias la='eza --icons=auto -a'
-alias tree='eza --icons=auto -T'
+alias la='l -a'
+alias ll='la -hl --git --smart-group'
+alias tree='l -T'
+alias atree='la -T'
 # show a file tree sorted by size
-alias stree='eza --icons=auto -laThs=size --total-size --no-permissions --no-user --no-time'
+alias stree='atree -lhs=size --total-size --no-permissions --no-user --no-time'
 # wrap cat with bat for colors and paging
 alias cat='bat -p'
 
@@ -143,34 +182,8 @@ alias gs='git status --short'
 alias gu='git pull'
 alias ng='nvim +NeogitStandalone'
 
-# for whatever reason, aliasing this doesn't register it as a valid alias
-tetris() {
-  autoload -Uz tetriscurses && tetriscurses
-}
-
-# alias bash help because I script a lot
-help() {
-  /usr/bin/env bash -c "builtin help $*"
-}
-
-eval "$(zoxide init --cmd cd zsh)"
-
-# neovim
-# wrap neovim with zoxide for easier directory cd'ing
-nvz() {
-  if [[ $# -eq 1 && -e $1 ]]; then
-    dir="$1"
-  else
-    dir="$(zoxide query "$@")"
-  fi
-    if [[ -d "$dir" ]]; then
-      cd "$dir" || exit 1
-      nvim
-    fi
-}
-
-# for yazi
-export EDITOR=nvim
+alias nvz='zz nvim'
+alias yz='zz yazi'
 
 # iterate over all files ending with .zsh, failing silently if nothing is found
 conf_dir="${ZDOTDIR:-$HOME}/zconfs"
