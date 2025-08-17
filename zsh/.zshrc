@@ -153,7 +153,6 @@ help() {
   /usr/bin/env bash -c "builtin help $*"
 }
 
-## Shell integrations
 eval "$(zoxide init --cmd cd zsh)"
 
 # neovim
@@ -166,7 +165,7 @@ nvz() {
   fi
     if [[ -d "$dir" ]]; then
       cd "$dir" || exit 1
-      nvim .
+      nvim
     fi
 }
 
@@ -178,66 +177,3 @@ conf_dir="${ZDOTDIR:-$HOME}/zconfs"
 for conf in "$conf_dir/"**/*.zsh(N); do
   source "$conf"
 done
-
-# jenv
-JENV_PATH="$HOME/.jenv/bin"
-if [[ -d "$JENV_PATH" ]]; then
-  export PATH="$HOME/.jenv/bin:$PATH"
-  eval "$(jenv init -)"
-fi
-
-# fnm (node)
-# modified from fnm install script: https://github.com/Schniz/fnm/blob/master/.ci/install.sh
-OS="$(uname -s)"
-
-case "${OS}" in
-MINGW* | Win*) OS="Windows" ;;
-esac
-
-if [ -d "$HOME/.fnm" ]; then
-  FNM_PATH="$HOME/.fnm"
-elif [ -n "$XDG_DATA_HOME" ]; then
-  FNM_PATH="$XDG_DATA_HOME/fnm"
-elif [ "$OS" = "Darwin" ]; then
-  FNM_PATH="$HOME/Library/Application Support/fnm"
-else
-  FNM_PATH="$HOME/.local/share/fnm"
-fi
-
-if [ -d "$FNM_PATH" ]; then
-  export PATH="$FNM_PATH:$PATH"
-  eval "$(fnm env --use-on-cd --version-file-strategy=recursive --shell=zsh)"
-  if [[ -e "$FNM_PATH/_fnm.sh" ]]; then
-    # consider auto-installing them if they don't exist
-    . "$FNM_PATH/_fnm.sh"
-  fi
-
-  # add yarn globals to path
-  yarn_bin="$(yarn global bin)"
-  if [ -d "$yarn_bin" ]; then
-    export PATH="$(yarn global bin):$PATH"
-  fi
-fi
-
-# Golang
-GOPATH="${GOPATH:-$HOME/go}"
-
-# see `go help install` for info on each envvar
-if [[ -d "$GOPATH" ]]; then
-  export GOPATH="$GOPATH"
-  if [[ -z "$GOBIN" ]]; then
-    export GOBIN="$GOPATH/bin"
-  fi
-
-  local paths_to_add=("$GOBIN", "$HOME/.local/bin")
-  if [[ -n "$GOTOOLDIR" && -d "$GOTOOLDIR" ]]; then
-    paths_to_add+=("$GOTOOLDIR")
-  elif [[ -n "$GOROOT" && -d "$GOROOT" ]]; then
-    paths_to_add+=("$GOROOT/bin")
-  fi
-
-  # join go paths with a colon and prepend them to PATH
-  # e.g.: (one two three) -> one:two:three
-  # see: https://zsh.sourceforge.io/Guide/zshguide05.html#l124
-  export PATH="${(j.:.)paths_to_add}:$PATH"
-fi
