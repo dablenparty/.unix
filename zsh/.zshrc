@@ -14,32 +14,10 @@ elif [[ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
 fi
 
 # fzf fuzzy finder
+# done before other shell integrations for fzf-tab
 export FZF_DEFAULT_COMMAND="fd -uuu -tf -tl --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 eval "$(fzf --zsh)"
-
-# Initialize oh-my-posh, but not on Apple Terminal
-if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
-  if [[ "$XDG_CURRENT_DESKTOP" == "Hyprland" ]]; then
-    config="$HOME/.cache/wal/zen-wal.omp.toml"
-  else
-    config="$HOME/zen.omp.toml"
-  fi
-
-  ## Enables dynamic window titles
-  # Called before prompt(?)
-  function precmd {
-      # Set window title
-      print -Pn "\e]0;zsh%L %(1j,%j job%(2j|s|); ,)%~\e\\"
-  }
-
-  # Called when executing a command
-  function preexec {
-      print -Pn "\e]0;${(q)1}\e\\"
-  }
-
-  eval "$(oh-my-posh init zsh --config "$config")"
-fi
 
 # force bad syntax to be highlighted red no matter the color scheme
 typeset -A ZSH_HIGHLIGHT_STYLES
@@ -81,6 +59,29 @@ zstyle ':completion:*' menu no
 preview_cmd="eza -a1 --color=always -I '.DS_Store' \$realpath"
 zstyle ':fzf-tab:complete:cd:*' fzf-preview "$preview_cmd"
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview "$preview_cmd"
+
+# Initialize oh-my-posh, but not on Apple Terminal
+if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
+  if [[ "$XDG_CURRENT_DESKTOP" == "Hyprland" ]]; then
+    config="$HOME/.cache/wal/zen-wal.omp.toml"
+  else
+    config="${ZDOTDIR:-$HOME/.zsh}/zen.omp.toml"
+  fi
+
+  ## Enables dynamic window titles
+  # Called before prompt(?)
+  function precmd {
+      # Set window title
+      print -Pn "\e]0;zsh%L %(1j,%j job%(2j|s|); ,)%~\e\\"
+  }
+
+  # Called when executing a command
+  function preexec {
+      print -Pn "\e]0;${(q)1}\e\\"
+  }
+
+  eval "$(oh-my-posh init zsh --config "$config")"
+fi
 
 ## Keybindings
 bindkey -e
