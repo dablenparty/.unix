@@ -17,7 +17,7 @@ fi
 
 if [[ -d "$FNM_PATH" ]]; then
   export PATH="$FNM_PATH:$PATH"
-  eval "$(fnm env --use-on-cd --version-file-strategy=recursive --shell=zsh)"
+  source <(fnm env --use-on-cd --version-file-strategy=recursive --shell=zsh)
   if [[ -e "$FNM_PATH/_fnm.sh" ]]; then
     # consider auto-installing them if they don't exist
     . "$FNM_PATH/_fnm.sh"

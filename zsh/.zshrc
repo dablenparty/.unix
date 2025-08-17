@@ -7,19 +7,19 @@ export MANPAGER="nvim +Man!"
 
 # Check if homebrew is installed
 if [[ -f "/usr/local/bin/brew" ]]; then
-  eval "$("/usr/local/bin/brew" shellenv)"
+  source <("/usr/local/bin/brew" shellenv)
 elif [[ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
-  eval "$("/home/linuxbrew/.linuxbrew/bin/brew" shellenv)"
+  source <("/home/linuxbrew/.linuxbrew/bin/brew" shellenv)
 # # Apple Silicon
 # elif [[ -f "/opt/homebrew/bin/brew" ]]; then
-#   eval "$("/opt/homebrew/bin/brew" shellenv)"
+#   source <("/opt/homebrew/bin/brew" shellenv)
 fi
 
 # fzf fuzzy finder
 # done before other shell integrations for fzf-tab
 export FZF_DEFAULT_COMMAND="fd -uuu -tf -tl --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-eval "$(fzf --zsh)"
+source <(fzf --zsh)
 
 # force bad syntax to be highlighted red no matter the color scheme
 typeset -A ZSH_HIGHLIGHT_STYLES
@@ -48,7 +48,7 @@ zcomet load zsh-users/zsh-completions
 zcomet compinit
 
 # NOTE: must come AFTER compinit
-eval "$(zoxide init --cmd cd zsh)"
+source <(zoxide init --cmd cd zsh)
 
 ## Completion styling
 
@@ -85,7 +85,7 @@ if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
       print -Pn "\e]0;${(q)1}\e\\"
   }
 
-  eval "$(oh-my-posh init zsh --config "$config")"
+  source <(oh-my-posh init zsh --config "$config")
 fi
 
 ## Keybindings
