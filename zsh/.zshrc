@@ -122,6 +122,7 @@ function tetris() {
 }
 
 # helper function that can wrap any arbitrary command with zoxide
+# usage: zz <program> <dir> [...dir]
 function zz() {
   if (($# < 2)); then
     echo "error: expected at least 2 arguments, got $#" 1>&2
@@ -136,10 +137,47 @@ function zz() {
     dir="$1"
   else
     dir="$(zoxide query "$@")"
+    if [[ -z "$dir" ]]; then
+      return 1
+    fi
   fi
 
   cd "$dir" || return 1
   command "$prog"
+}
+
+# usage: zf <program> <dir> [...dir] <file>
+function zf() {
+  if (($# < 3)); then
+    echo "error: expected at least 3 arguments, got $#" 1>&2
+    return 2
+  fi
+
+  prog="$1"
+  # remove prog from arglist
+  shift 1
+
+  file_arg="${@[-1]}"
+  # remove file_arg from end of arglist
+  shift -p 1
+
+  if [[ $# -eq 1 && -d "$1" ]]; then
+    dir="$1"
+  else
+    dir="$(zoxide query "$@")"
+    if [[ -z "$dir" ]]; then
+      return 1
+    fi
+  fi
+
+  if [[ -f "$dir/$file_args" ]]; then
+    file_path="$dir/$file_arg"
+  else
+    file_path="$(fd --absolute-path --max-results 1 --print0 -tf -tl "$file_arg" "$dir")"
+  fi
+
+  cd "$dir" || return 1
+  command "$prog" "$file_path"
 }
 
 # Aliases: coreutils
@@ -183,6 +221,7 @@ alias gu='git pull'
 alias ng='nvim +NeogitStandalone'
 
 alias nvz='zz nvim'
+alias nvf='zf nvim'
 alias yz='zz yazi'
 
 # iterate over all files ending with .zsh, failing silently if nothing is found
