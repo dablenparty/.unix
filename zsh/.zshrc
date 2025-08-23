@@ -70,7 +70,7 @@ if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
   if [[ "$XDG_CURRENT_DESKTOP" == "Hyprland" ]]; then
     config="$HOME/.cache/wal/zen-wal.omp.toml"
   else
-    config="${ZDOTDIR:-$HOME/.zsh}/zen.omp.toml"
+    config="${ZDOTDIR:-$HOME}/zen.omp.toml"
   fi
 
   ## Enables dynamic window titles
