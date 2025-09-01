@@ -2,6 +2,7 @@
 Operation = Install
 Operation = Upgrade
 Type = Package
+Target = *rate-mirrors
 Target = *mirrorlist
 
 [Action]
