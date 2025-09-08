@@ -173,7 +173,7 @@ function zf() {
   if [[ -f "$dir/$file_args" ]]; then
     file_path="$dir/$file_arg"
   else
-    file_path="$(fd --absolute-path --max-results 1 --print0 -tf -tl "$file_arg" "$dir")"
+    file_path="$(fd -uuu --exclude .git --absolute-path --max-results 1 --print0 -tf -tl "$file_arg" "$dir")"
   fi
 
   cd "$dir" || return 1
