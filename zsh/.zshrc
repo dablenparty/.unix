@@ -182,6 +182,7 @@ function zf() {
 
 # Aliases: coreutils
 # add -v to coreutils so that they always explain what they're doing
+alias ..='cd ..'
 alias cp='cp -v'
 alias mkdir='mkdir -v'
 alias mv='mv -v'
