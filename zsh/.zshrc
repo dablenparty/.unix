@@ -1,19 +1,20 @@
 #!/usr/bin/env zsh
 
+# enable command auto-correction
+setopt CORRECT
+
 # for yazi
 export EDITOR=nvim
 # syntax highlighting and table-of-contents (`gO`) in manpages
 export MANPAGER="nvim +Man!"
 
-# Check if homebrew is installed
-if [[ -f "/usr/local/bin/brew" ]]; then
-  source <("/usr/local/bin/brew" shellenv)
-elif [[ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
-  source <("/home/linuxbrew/.linuxbrew/bin/brew" shellenv)
+case "$(uname -s)" in
+  Linux) source <("/home/linuxbrew/.linuxbrew/bin/brew" shellenv) ;;
+  Darwin) source <("/usr/local/bin/brew" shellenv) ;;
+esac
+
 # # Apple Silicon
-# elif [[ -f "/opt/homebrew/bin/brew" ]]; then
-#   source <("/opt/homebrew/bin/brew" shellenv)
-fi
+# source <("/opt/homebrew/bin/brew" shellenv)
 
 # fzf fuzzy finder
 # done before other shell integrations for fzf-tab
@@ -33,19 +34,17 @@ fi
 
 source "$ZCOMET_HOME/zcomet.zsh"
 
-## Add in zsh plugins
-# this must be first!
-zcomet load Aloxaf/fzf-tab
-
-## Add in snippets
+## Add in snippets & plugins
 zcomet snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
+zcomet load zsh-users/zsh-completions
 
+zcomet compinit
+
+zcomet load Aloxaf/fzf-tab
 # load these last
 zcomet load zsh-users/zsh-syntax-highlighting
 zcomet load zsh-users/zsh-autosuggestions
 
-zcomet load zsh-users/zsh-completions
-zcomet compinit
 
 # NOTE: must come AFTER compinit
 source <(zoxide init --cmd cd zsh)
