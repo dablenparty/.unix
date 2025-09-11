@@ -8,11 +8,11 @@ export EDITOR=nvim
 # syntax highlighting and table-of-contents (`gO`) in manpages
 export MANPAGER="nvim +Man!"
 
-case "$(uname -s)" in
-  Linux) source <("/home/linuxbrew/.linuxbrew/bin/brew" shellenv) ;;
-  Darwin) source <("/usr/local/bin/brew" shellenv) ;;
-esac
-
+if [[ -x "/usr/local/bin/brew" ]]; then
+  source <("/usr/local/bin/brew" shellenv)
+elif [[ -x "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
+  source <("/home/linuxbrew/.linuxbrew/bin/brew" shellenv)
+fi
 # # Apple Silicon
 # source <("/opt/homebrew/bin/brew" shellenv)
 
