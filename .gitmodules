@@ -4,6 +4,6 @@
 [submodule ".neovim"]
 	path = neovim
 	url = ../../dablenparty/.neovim.git
-[submodule ".portainer"]
-	path = portainer
-	url = ../../dablenparty/.portainer.git
+[submodule ".homelab"]
+	path = homelab
+	url = ../../dablenparty/.homelab.git
