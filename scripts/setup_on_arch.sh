@@ -20,14 +20,16 @@ y | Y | "")
   ;;
 esac
 
+sudo --reset-timestamp
 echo "installing dependencies"
-sudo pacman --overwrite "*" --noconfirm -S \
+sudo pacman --overwrite "*" --noconfirm --needed -S \
   base-devel \
   cmake \
   curl \
   devtools \
   gcc \
   git \
+  make \
   man-db \
   ntfs-3g \
   openssh \
@@ -48,38 +50,58 @@ git config --global user.email "$git_email"
 echo "creating ssh keys (you have to install them yourself)"
 ssh_home="$HOME/.ssh"
 mkdir -vp "$ssh_home"
+ssh-keygen -t ed25519 -f "$ssh_home/forgejo" -P "" -C "$git_email"
 ssh-keygen -t ed25519 -f "$ssh_home/github" -P "" -C "$git_email"
 ssh-keygen -t rsa -f "$ssh_home/aur" -P ""
 ssh-keygen -t rsa -f "$ssh_home/couchlab" -P ""
+cat > "$ssh_home/config" <<EOF
+Host aur.archlinux.org
+  IdentityFile ~/.ssh/aur
+  User $git_username
+
+Host forgejo-ssh.couchlab.me
+	IdentityFile ~/.ssh/forgejo
+	ProxyCommand /usr/bin/env cloudflared access ssh --hostname %h
+
+Host github.com
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/github
+EOF
 
 echo "installing AUR helper: paru"
-paru_path="$HOME/aur/paru"
-mkdir -vp "$paru_path"
-git clone https://aur.archlinux.org/paru.git "$paru_path"
-cd "$paru_path" || exit 1
-# paru is a Rust project and I don't use any crazy custom RUSTFLAGS,
-# so it's OK to do this before unboxing the makepkg config in my dotfiles.
-# I actually like having paru be different.
-makepkg -si
-cd "$ORIG_DIR" || exit 1
+if ! sudo pacman --noconfirm -S paru; then
+  echo "failed to install paru from repos, installing manually..."
+  paru_path="$HOME/aur/paru"
+  mkdir -vp "$paru_path"
+  git clone https://aur.archlinux.org/paru.git "$paru_path"
+  cd "$paru_path" || exit 1
+  # paru is a Rust project and I don't use any crazy custom RUSTFLAGS,
+  # so it's OK to do this before unboxing the makepkg config in my dotfiles.
+  makepkg -si
+  cd "$ORIG_DIR" || exit 1
+fi
 paru --gendb
 
 echo "installing dotfiles"
+#shellcheck disable=SC2016
+echo 'export ZDOTDIR="$HOME/.zsh"' >> "$HOME/.zshenv"
+source "$HOME/.zshenv"
 dotfiles_path="$HOME/dotfiles"
 mkdir -vp "$dotfiles_path"
-modules_to_unbox=(home lazygit makepkg neovim paru yazi)
+paru -S boxunbox
+sudo unbox --if-exists move "$dotfiles_path/pacman"
 # there are duplicates here, but that's what --needed is for
 paru --needed --noconfirm -S \
+  autorestic-bin \
   bat \
-  boxunbox \
   eza \
   fd \
   fnm \
+  foot \
   fzf \
   gcc \
   git \
   jenv \
-  lazygit \
   make \
   oh-my-posh-bin \
   neovim \
@@ -88,11 +110,11 @@ paru --needed --noconfirm -S \
   unzip \
   zoxide \
   zsh
-git clone https://github.com/dablenparty/.unix.git "$dotfiles_path"
-cd "$dotfiles_path" || exit 1
-git submodule update --init --remote --rebase neovim
-unbox --force "${modules_to_unbox[@]}"
-cd "$ORIG_DIR" || exit 1
+git clone --recurse-submodules=neovim https://github.com/dablenparty/.unix.git "$dotfiles_path"
+modules_to_unbox=(foot git makepkg neovim paru yazi zsh)
+# prepend "$dotfiles_path/" to each module
+modules_to_unbox=("${modules_to_unbox[@]/#/$dotfiles_path/}")
+unbox --if-exists overwrite "${modules_to_unbox[@]}"
 
 echo "installing gaming dependencies"
 paru --noconfirm -S wine \
@@ -107,18 +129,21 @@ paru --noconfirm -S wine \
 # steam must be installed after all the Wine stuff
 paru --noconfirm --rebuild=all -S steam
 
-echo "installing extras"
+echo "installing syncthing"
 paru --needed --noconfirm --asexplicit -S \
-  obsidian \
   syncthingtray-qt6 \
   syncthing
+
+sudo systemctl enable --now syncthing@"$USER".service
+
+echo "installing obsidian"
+paru --needed --noconfirm -S obsidian
 
 echo "installing rustup from rustup.rs"
 paru -Rus rust
 eval "${ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs; }"
 source "$HOME/.cargo/env"
 
-echo "installing Rust toolchains"
 rustup toolchain install stable
 rustup toolchain install nightly
 rustup default stable
