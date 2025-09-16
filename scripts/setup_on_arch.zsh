@@ -1,28 +1,9 @@
-#!/usr/bin/env bash
-#shellcheck disable=1091
+#!/usr/bin/env zsh
 
-set -eo pipefail
+set -e
 
-echo "Before continuing, please make sure your system is up-to-date."
-echo "    sudo pacman -Syu"
-read -rp "Continue? [Y\n]"$'\n' -n 1 key
-
-# save the original dir for undoing cd commands
-ORIG_DIR="$PWD"
-
-case $key in
-y | Y | "")
-  echo "Beginning installation..."
-  ;;
-*)
-  echo "aborting..."
-  exit 0
-  ;;
-esac
-
-sudo --reset-timestamp
-echo "installing dependencies"
-sudo pacman --overwrite "*" --noconfirm --needed -S \
+echo "installing base dependencies"
+sudo pacman --overwrite "*" --noconfirm -S \
   base-devel \
   cmake \
   curl \
@@ -37,8 +18,7 @@ sudo pacman --overwrite "*" --noconfirm --needed -S \
   ripgrep \
   rust \
   unzip \
-  yazi \
-  zsh
+  yazi
 
 echo "setting git config"
 git config --global init.defaultBranch main
@@ -54,7 +34,7 @@ ssh-keygen -t ed25519 -f "$ssh_home/forgejo" -P "" -C "$git_email"
 ssh-keygen -t ed25519 -f "$ssh_home/github" -P "" -C "$git_email"
 ssh-keygen -t rsa -f "$ssh_home/aur" -P ""
 ssh-keygen -t rsa -f "$ssh_home/couchlab" -P ""
-cat > "$ssh_home/config" <<EOF
+echo > "$ssh_home/config" <<EOF
 Host aur.archlinux.org
   IdentityFile ~/.ssh/aur
   User $git_username
@@ -82,71 +62,95 @@ if ! sudo pacman --noconfirm -S paru; then
 fi
 paru --gendb
 
-echo "installing dotfiles"
-#shellcheck disable=SC2016
-echo 'export ZDOTDIR="$HOME/.zsh"' >> "$HOME/.zshenv"
-source "$HOME/.zshenv"
-dotfiles_path="$HOME/dotfiles"
-mkdir -vp "$dotfiles_path"
-paru -S boxunbox
-sudo unbox --if-exists move "$dotfiles_path/pacman"
-# there are duplicates here, but that's what --needed is for
-paru --needed --noconfirm -S \
-  autorestic-bin \
+echo "cloning dotfiles"
+paru --noconfirm -S boxunbox
+dotfiles_dir="$HOME/dotfiles"
+git clone --recurse-submodules=hyprland https://forgejo.couchlab.me/dablenparty/.unix.git "$dotfiles_dir"
+unbox --force "$dotfiles_dir/pacman" "$dotfiles_dir/makepkg" "$dotfiles_dir/hyprland/paru"
+
+echo "installing Hyprland"
+paru --needed --rebuild=all --sudoloop --noconfirm -S \
+  avahi \
   bat \
+  blueman \
+  dot-hyprland/hypridle-git \
+  dot-hyprland/hyprutils-git \
+  dysk \
+  dust \
   eza \
   fd \
+  firefox \
   fnm \
   foot \
   fzf \
-  gcc \
-  git \
+  hyprland \
+  hyprlock-git \
+  hyprpolkitagent \
+  hyprshot-git \
   jenv \
-  make \
-  oh-my-posh-bin \
+  lib32-nvidia-utils \
+  mako \
+  mpvpaper \
   neovim \
+  nvidia-open \
+  nvidia-settings \
+  nvidia-utils \
+  nvtop \
+  obsidian \
+  oh-my-posh-bin \
+  perl-image-exiftool \
+  python-pywal16 \
   ripgrep \
+  rofi-wayland \
+  sddm \
+  seatd \
+  socat \
+  speech-dispatcher \
+  swww-git \
+  tesseract \
+  tesseract-data-eng \
   ttf-jetbrains-mono-nerd \
+  udiskie \
   unzip \
-  zoxide \
-  zsh
-git clone --recurse-submodules=neovim https://github.com/dablenparty/.unix.git "$dotfiles_path"
-modules_to_unbox=(foot git makepkg neovim paru yazi zsh)
-# prepend "$dotfiles_path/" to each module
-modules_to_unbox=("${modules_to_unbox[@]/#/$dotfiles_path/}")
-unbox --if-exists overwrite "${modules_to_unbox[@]}"
+  upscayl-ncnn \
+  waybar \
+  waypaper \
+  xdg-desktop-portal-gtk \
+  xdg-desktop-portal-hyprland \
+  xdg-desktop-portal-kde \
+  xdg-terminal-exec \
+  xdg-user-dirs \
+  zoxide
 
-echo "installing gaming dependencies"
-paru --noconfirm -S wine \
-  wine-gecko \
-  wine-mono \
-  pipewire-pulse \
-  lib32-pipewire \
-  lib32-libpulse \
-  lib32-sdl2 \
-  xdg-desktop-portal-kde
+# no chroot for this
+paru --needed --rebuild=all --sudoloop --nochroot --noconfirm -S dot-hyprland/glfw-wayland-minecraft-git
 
-# steam must be installed after all the Wine stuff
-paru --noconfirm --rebuild=all -S steam
+setopt EXTENDEDGLOB
 
-echo "installing syncthing"
-paru --needed --noconfirm --asexplicit -S \
-  syncthingtray-qt6 \
-  syncthing
-
-sudo systemctl enable --now syncthing@"$USER".service
-
-echo "installing obsidian"
-paru --needed --noconfirm -S obsidian
+hypr_boxes=( "$dotfiles_dir"/hyprland/*~pkgbuild(DNF) )
+unbox --force "$hypr_boxes[@]"
 
 echo "installing rustup from rustup.rs"
-paru -Rus rust
-eval "${ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs; }"
+paru --noconfirm -Rus rust
+eval "$(curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs)"
 source "$HOME/.cargo/env"
 
+echo "installing Rust toolchains"
 rustup toolchain install stable
 rustup toolchain install nightly
 rustup default stable
 rustup component add rust-analyzer
+
+echo 'enabling system services'
+sudo systemctl enable \
+  avahi.service \
+  sddm.service
+
+echo 'enabling user services'
+systemctl enable --user \
+  bluman-applet.service \
+  hypridle.service \
+  mako.service \
+  waybar.service
 
 echo "Installation complete! Make sure you double-check pacman and reboot when you're done!"

@@ -1,10 +1,10 @@
 target = "/usr/local/bin"
 exclude = [
-    '^\.git.*$',
-    '\.bub\.toml$',
-    '^setup_on_arch\..*$',
-    '\.unboxrc.*$',
     "^(README|LICEN[CS]E|COPYING).*$",
+    '\.bub\.toml$',
+    '\.unboxrc.*$',
+    '\.unboxrc(\.ron)?$',
+    '^\.git.*$',
 ]
 include = []
 link_root = false
