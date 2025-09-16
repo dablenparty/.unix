@@ -7,3 +7,6 @@
 [submodule ".homelab"]
 	path = homelab
 	url = ../../dablenparty/.homelab.git
+[submodule ".sh"]
+	path = shell-scripts
+	url = ../../dablenparty/.sh.git
