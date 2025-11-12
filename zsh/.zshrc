@@ -36,6 +36,7 @@ source "$ZCOMET_HOME/zcomet.zsh"
 
 ## Add in snippets & plugins
 zcomet snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
+zcomet load mattmc3/zman
 zcomet load zsh-users/zsh-completions
 
 zcomet compinit
