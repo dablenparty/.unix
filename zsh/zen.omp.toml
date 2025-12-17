@@ -1,5 +1,5 @@
 console_title_template = '{{ .Shell }} in {{ .Folder }}'
-version = 3
+version = 4
 final_space = true
 
 [palette]
@@ -22,31 +22,31 @@ final_space = true
   newline = true
 
   [[blocks.segments]]
-    style = 'plain'
     template = '{{ if .SSHSession }}{{ .UserName }}@{{ .HostName }}{{ end }} '
     foreground = 'p:red'
     background = 'transparent'
     type = 'session'
+    style = 'plain'
 
   [[blocks.segments]]
-    style = 'plain'
     template = '{{ .Path }}'
     foreground = 'blue'
     background = 'transparent'
     type = 'path'
+    style = 'plain'
 
-    [blocks.segments.properties]
+    [blocks.segments.options]
       folder_icon = '..'
       style = 'agnoster_short'
 
   [[blocks.segments]]
-    style = 'plain'
     template = ' on <p:red>{{ .HEAD }}</><p:blue>{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }}</> <cyan>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>'
     foreground = 'cyan'
     background = 'transparent'
     type = 'git'
+    style = 'plain'
 
-    [blocks.segments.properties]
+    [blocks.segments.options]
       branch_icon = ' '
       commit_icon = '@'
       fetch_status = true
@@ -57,22 +57,22 @@ final_space = true
   overflow = 'hide'
 
   [[blocks.segments]]
-    style = 'plain'
     template = '{{ if .Error }}{{ .Error }}{{ else }}󰌠 {{ .Full }}{{ end }} <p:blue>({{ if .Venv }}{{ .Venv }}{{ end }})</>'
     foreground = 'yellow'
     type = 'python'
+    style = 'plain'
 
   [[blocks.segments]]
-    style = 'plain'
     template = '{{ if .Error }}<p:red>{{ .Error }}</>{{ else }} {{ .Full }}{{ end }}'
     foreground = 'p:blue'
     type = 'dart'
+    style = 'plain'
 
   [[blocks.segments]]
-    style = 'plain'
     template = '  {{ .Full }} '
     foreground = '#e43716'
     type = 'rust'
+    style = 'plain'
 
 [[blocks]]
   type = 'prompt'
@@ -80,8 +80,8 @@ final_space = true
   newline = true
 
   [[blocks.segments]]
-    style = 'plain'
     template = '❯'
     background = 'transparent'
     type = 'text'
+    style = 'plain'
     foreground_templates = ['{{if gt .Code 0}}red{{end}}', '{{if eq .Code 0}}magenta{{end}}']
