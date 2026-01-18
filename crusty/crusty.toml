@@ -1,0 +1,127 @@
+repo = "${RESTIC_REPO}"
+password-file = "~/.config/crusty/the-bin-restic-password"
+
+[[preset]]
+_name = "art-of-rally"
+_methods = ["backup"]
+_paths = [ "~/.config/unity3d/Funselektor Labs/art of rally/cloud" ]
+tag = [
+  "store:steam",
+  "cloud",
+  "ar:location:art-of-rally",
+]
+
+[[preset]]
+_name = "assassins-creed-iv-black-flag"
+_methods = ["backup"]
+_paths = ["~/Games/ubisoft-connect/drive_c/Program Files (x86)/Ubisoft/Ubisoft Game Launcher/savegames/3e599603-0040-4ebd-b033-cd859aef7d0d/273"]
+tag = [
+  "series:assassins-creed",
+  "store:ubisoft",
+  "cloud",
+]
+
+[[preset]]
+_name = "elden-ring"
+_methods = ["backup"]
+_steam_app_id = 1245620
+_paths = ["$STEAM_COMPAT_DATA/drive_c/users/steamuser/AppData/Roaming/EldenRing"]
+tag = [
+  "series:dark-souls",
+  "store:steam",
+  "cloud",
+]
+
+[[preset]]
+_name = "far-cry-4"
+_methods = ["backup"]
+_steam_app_id = 298110
+_paths = [
+  "$STEAM_COMPAT_DATA/drive_c/Program Files (x86)/Ubisoft/Ubisoft Game Launcher/savegames/3e599603-0040-4ebd-b033-cd859aef7d0d/856",
+  "$STEAM_COMPAT_DATA/drive_c/Program Files (x86)/Ubisoft/Ubisoft Game Launcher/savegames/3e599603-0040-4ebd-b033-cd859aef7d0d/420",
+  "$STEAM_COMPAT_DATA/drive_c/Program Files (x86)/Ubisoft/Ubisoft Game Launcher/savegames/3e599603-0040-4ebd-b033-cd859aef7d0d/971",
+]
+tag = [
+  "series:far-cry",
+  "store:steam",
+  "cloud",
+]
+
+[[preset]]
+_name = "star-wars-jedi-survivor"
+_methods = ["backup"]
+_steam_app_id = 1774580
+_paths = [
+  "$STEAM_COMPAT_DATA/drive_c/users/steamuser/AppData/Local/SwGame/Saved/Config/WindowsNoEditor/GameUserSettings.ini",
+  "$STEAM_COMPAT_DATA/drive_c/users/steamuser/Saved Games/Respawn/JediSurvivor",
+  "$STEAM_INSTALL_DIR/SwGame/Config/User*.ini",
+  "$STEAM_INSTALL_DIR/SwGame/Content/Paks/z*",
+  "$STEAM_INSTALL_DIR/SwGame/Content/Paks/~mods",
+]
+tag = [
+  "series:star-wars",
+  "store:steam",
+  "cloud",
+]
+
+[[preset]]
+_name = "middle-earth-shadow-of-war"
+_methods = ["backup"]
+_paths = [ "~/.steam/steam/userdata/147569284/356190/remote" ]
+tag = [
+  "series:middle-earth",
+  "store:steam",
+  "cloud",
+]
+
+[[preset]]
+_name = "risk-of-rain-2"
+_methods = ["backup"]
+_steam_app_id = 632360
+_paths = [ "~/.steam/steam/userdata/147569284/632360/remote/UserProfiles" ]
+tag = [
+  "series:risk-of-rain",
+  "store:steam",
+  "cloud",
+]
+
+[[preset]]
+_name = "stalker-2-heart-of-chornobyl"
+_methods = ["backup"]
+_steam_app_id = 1643320
+_paths = [
+  "$STEAM_COMPAT_DATA/drive_c/users/steamuser/AppData/Local/Stalker2/Saved/Config",
+  "$STEAM_COMPAT_DATA/drive_c/users/steamuser/AppData/Local/Stalker2/Saved/CustomizeControls.cfg",
+  "$STEAM_COMPAT_DATA/drive_c/users/steamuser/AppData/Local/Stalker2/Saved/GameSettings/AppliedSettingsWin64.cfg",
+  "$STEAM_COMPAT_DATA/drive_c/users/steamuser/AppData/Local/Stalker2/Saved/STEAM/*.bak",
+  "$STEAM_COMPAT_DATA/drive_c/users/steamuser/AppData/Local/Stalker2/Saved/STEAM/*.sav",
+  "$STEAM_COMPAT_DATA/drive_c/users/steamuser/AppData/Local/Stalker2/Saved/STEAM/SaveGames",
+  "$STEAM_COMPAT_DATA/drive_c/users/steamuser/AppData/Local/Stalker2/Saved/SaveGames",
+  "$STEAM_INSTALL_DIR/Engine/Plugins/Marketplace/DLSS/Binaries/ThirdParty/Win64/nvngx_dlssd.dll",
+  "$STEAM_INSTALL_DIR/Engine/Plugins/Marketplace/Streamline/Binaries/ThirdParty/Win64/*.dll",
+  "$STEAM_INSTALL_DIR/Stalker2/Binaries/Win64/ReShade.ini",
+  "$STEAM_INSTALL_DIR/Stalker2/Binaries/Win64/dlssg_to_fsr3_amd_is_better.dll",
+  "$STEAM_INSTALL_DIR/Stalker2/Binaries/Win64/renodx-stalker2.addon64",
+  "$STEAM_INSTALL_DIR/Stalker2/Binaries/Win64/version.dll",
+  "$STEAM_INSTALL_DIR/Stalker2/Binaries/Win64/winmm.dll",
+  "$STEAM_INSTALL_DIR/Stalker2/Content/Movies/MainMenuVideo",
+  "$STEAM_INSTALL_DIR/Stalker2/Content/Paks/~mods",
+]
+tag = [
+  "series:stalker",
+  "store:steam",
+  "cloud",
+]
+
+[[preset]]
+_name = "session-skate-sim"
+_methods = ["backup"]
+_steam_app_id = 861650
+_paths = [
+  "$STEAM_COMPAT_DATA/drive_c/users/steamuser/AppData/Local/SessionGame/Saved/SaveGames",
+  "$STEAM_COMPAT_DATA/drive_c/users/steamuser/AppData/Local/SessionGame/Saved/Replays",
+]
+tag = [
+  "store:steam",
+  "cloud",
+]
