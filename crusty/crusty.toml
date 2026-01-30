@@ -125,3 +125,11 @@ tag = [
   "store:steam",
   "cloud",
 ]
+
+[[preset]]
+_name = "tekxit4"
+_methods = "backup"
+_paths = ["~/.local/share/PrismLauncher/instances/Tekxit 4*"]
+tag = [
+  "minecraft"
+]
