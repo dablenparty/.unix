@@ -48,15 +48,27 @@ tag = [
 ]
 
 [[preset]]
-_name = "star-wars-jedi-survivor"
+_name = "just-cause-4"
+_methods = ["backup"]
+_steam_app_id = 517630
+_paths = [
+  "~/.steam/steam/userdata/147569284/517630/remote",
+]
+
+[[preset]]
+_name = ["star-wars-jedi-survivor", "jedi-survivor"]
 _methods = ["backup"]
 _steam_app_id = 1774580
 _paths = [
   "$STEAM_COMPAT_DATA/drive_c/users/steamuser/AppData/Local/SwGame/Saved/Config/WindowsNoEditor/GameUserSettings.ini",
   "$STEAM_COMPAT_DATA/drive_c/users/steamuser/Saved Games/Respawn/JediSurvivor",
-  "$STEAM_INSTALL_DIR/SwGame/Config/User*.ini",
+  "$STEAM_INSTALL_DIR/SwGame/Binaries/Win64/UltraPlusConfig.ini",
+  "$STEAM_INSTALL_DIR/SwGame/Binaries/Win64/UltraPlus_version.txt",
+  "$STEAM_INSTALL_DIR/SwGame/Binaries/Win64/dwmapi.dll",
+  "$STEAM_INSTALL_DIR/SwGame/Binaries/Win64/ue4ss",
+  "$STEAM_INSTALL_DIR/SwGame/Config",
   "$STEAM_INSTALL_DIR/SwGame/Content/Paks/z*",
-  "$STEAM_INSTALL_DIR/SwGame/Content/Paks/~mods",
+  "$STEAM_INSTALL_DIR/SwGame/Content/Paks/~*",
 ]
 tag = [
   "series:star-wars",
@@ -86,7 +98,7 @@ tag = [
 ]
 
 [[preset]]
-_name = "stalker-2-heart-of-chornobyl"
+_name = ["stalker-2-heart-of-chornobyl", "stalker2"]
 _methods = ["backup"]
 _steam_app_id = 1643320
 _paths = [
