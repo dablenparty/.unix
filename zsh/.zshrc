@@ -142,6 +142,7 @@ function zz() {
   else
     dir="$(zoxide query "$@")"
     if [[ -z "$dir" ]]; then
+      # TODO: figure out a way to search for unknown dirs with fd
       return 1
     fi
   fi
@@ -152,8 +153,8 @@ function zz() {
 
 # usage: zf <program> <dir> [...dir] <file>
 function zf() {
-  if (($# < 3)); then
-    echo "error: expected at least 3 arguments, got $#" 1>&2
+  if (($# < 2)); then
+    echo "error: expected at least 2 arguments, got $#" 1>&2
     return 2
   fi
 
@@ -165,7 +166,9 @@ function zf() {
   # remove file_arg from end of arglist
   shift -p 1
 
-  if [[ $# -eq 1 && -d "$1" ]]; then
+  if (($# == 0)); then
+    dir="$PWD"
+  elif [[ $# -eq 1 && -d "$1" ]]; then
     dir="$1"
   else
     dir="$(zoxide query "$@")"
@@ -174,10 +177,10 @@ function zf() {
     fi
   fi
 
-  if [[ -f "$dir/$file_args" ]]; then
+  if [[ -f "$dir/$file_arg" ]]; then
     file_path="$dir/$file_arg"
   else
-    file_path="$(fd -uuu --exclude .git --absolute-path --max-results 1 --print0 -tf -tl "$file_arg" "$dir")"
+    file_path="$(fd -uuu --exclude .git --absolute-path --glob --max-results 1 --print0 -tf -tl "$file_arg" "$dir")"
   fi
 
   cd "$dir" || return 1
