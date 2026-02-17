@@ -194,6 +194,7 @@ alias cp='cp -v'
 alias mkdir='mkdir -v'
 alias mv='mv -v'
 alias rm='rm -v'
+alias rmlast='rm -v *(om[1])'
 
 # Aliases: eza
 alias l='eza --icons=auto'
