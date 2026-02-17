@@ -96,6 +96,10 @@ bindkey '^[w' kill-region
 # Some terminal emulators already do this; some don't
 bindkey '^[[3~' delete-char
 
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^xe' edit-command-line
+
 ## History
 HISTSIZE=5000
 HISTFILE=$HOME/.zsh_history
