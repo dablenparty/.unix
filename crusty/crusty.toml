@@ -1,3 +1,7 @@
+_default_repo = "the-bin"
+
+[[repo]]
+_name = "the-bin"
 repo = "${RESTIC_REPO}"
 password-file = "~/.config/crusty/the-bin-restic-password"
 
