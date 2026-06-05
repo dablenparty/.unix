@@ -81,7 +81,7 @@ tag = [
 ]
 
 [[preset]]
-_name = "middle-earth-shadow-of-war"
+_name = ["middle-earth-shadow-of-war", "shadow-of-war"]
 _methods = ["backup"]
 _paths = [ "~/.steam/steam/userdata/147569284/356190/remote" ]
 tag = [
@@ -140,6 +140,30 @@ _paths = [
 tag = [
   "store:steam",
   "cloud",
+]
+
+[[preset]]
+_name = ["stray"]
+_methods = ["backup"]
+_steam_app_id = 1332010
+_paths = [
+  "$STEAM_COMPAT_DATA/drive_c/users/steamuser/AppData/Local/Hk_project/Saved/Config/WindowsNoEditor",
+]
+tag = [
+  "store:steam",
+  "cloud"
+]
+
+[[preset]]
+_name = ["sons-of-the-forest", "sotf"]
+_methods = ["backup"]
+_steam_app_id = 1326470
+_paths = [
+  "$STEAM_COMPAT_DATA/drive_c/users/steamuser/AppData/LocalLow/Endnight/SonsOfTheForest",
+]
+tag = [
+  "store:steam",
+  "cloud"
 ]
 
 [[preset]]
