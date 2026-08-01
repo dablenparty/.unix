@@ -26,6 +26,17 @@ tag = [
 ]
 
 [[preset]]
+_name = [ "dark-souls-3", "ds3" ]
+_methods = ["backup"]
+_steam_app_id = 374320
+_paths = ["$STEAM_COMPAT_DATA/drive_c/users/steamuser/AppData/Roaming/DarkSoulsIII"]
+tag = [
+  "series:dark-souls",
+  "store:steam",
+  "cloud",
+]
+
+[[preset]]
 _name = "elden-ring"
 _methods = ["backup"]
 _steam_app_id = 1245620
@@ -91,6 +102,14 @@ tag = [
 ]
 
 [[preset]]
+_name = "noita"
+_methods = ["backup"]
+_steam_app_id = 881100
+_paths = [
+  "$STEAM_COMPAT_DATA/drive_c/users/steamuser/AppData/LocalLow/Nolla_Games_Noita/save*",
+]
+
+[[preset]]
 _name = "risk-of-rain-2"
 _methods = ["backup"]
 _steam_app_id = 632360
@@ -118,6 +137,7 @@ _paths = [
   "$STEAM_INSTALL_DIR/Stalker2/Binaries/Win64/ReShade.ini",
   "$STEAM_INSTALL_DIR/Stalker2/Binaries/Win64/dlssg_to_fsr3_amd_is_better.dll",
   "$STEAM_INSTALL_DIR/Stalker2/Binaries/Win64/renodx-stalker2.addon64",
+  "$STEAM_INSTALL_DIR/Stalker2/Binaries/Win64/ue4ss",
   "$STEAM_INSTALL_DIR/Stalker2/Binaries/Win64/version.dll",
   "$STEAM_INSTALL_DIR/Stalker2/Binaries/Win64/winmm.dll",
   "$STEAM_INSTALL_DIR/Stalker2/Content/Movies/MainMenuVideo",
@@ -140,6 +160,24 @@ _paths = [
 tag = [
   "store:steam",
   "cloud",
+]
+
+[[preset]]
+_name = ["spider-man-2", "sm2"]
+_methods = ["backup"]
+_steam_app_id = 2651280
+_paths = [
+  "$STEAM_COMPAT_DATA/drive_c/users/steamuser/Documents/Marvel's Spider-Man 2",
+  "$STEAM_INSTALL_DIR/dstorage*",
+  "~/Documents/mods/spider-man2/Overstrike",
+]
+exclude = [
+  "mods"
+]
+tag = [
+  "series:spider-man",
+  "store:steam",
+  "cloud"
 ]
 
 [[preset]]
