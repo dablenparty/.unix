@@ -1,0 +1,10 @@
+target = "/etc/tmpfiles.d"
+exclude = [
+    '\.unboxrc.*$',
+    '\.bub(\.\w+?)?\.(\w+)$',
+    '^\.git.*$',
+    "^(README|LICEN[CS]E|COPYING).*$",
+]
+include = ['^thp\.conf$']
+link_root = false
+link_type = "hard"
