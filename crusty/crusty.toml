@@ -26,6 +26,17 @@ tag = [
 ]
 
 [[preset]]
+_name = [ "control-resonant", "control2" ]
+_methods = ["backup"]
+_steam_app_id = 3669870
+_paths = ["~/.steam/steam/userdata/147569284/3669870/remote"]
+tag = [
+  "series:control",
+  "store:steam",
+  "cloud",
+]
+
+[[preset]]
 _name = [ "dark-souls-3", "ds3" ]
 _methods = ["backup"]
 _steam_app_id = 374320
@@ -132,15 +143,13 @@ _paths = [
   "$STEAM_COMPAT_DATA/drive_c/users/steamuser/AppData/Local/Stalker2/Saved/STEAM/*.sav",
   "$STEAM_COMPAT_DATA/drive_c/users/steamuser/AppData/Local/Stalker2/Saved/STEAM/SaveGames",
   "$STEAM_COMPAT_DATA/drive_c/users/steamuser/AppData/Local/Stalker2/Saved/SaveGames",
-  "$STEAM_INSTALL_DIR/Engine/Plugins/Marketplace/DLSS/Binaries/ThirdParty/Win64/nvngx_dlssd.dll",
   "$STEAM_INSTALL_DIR/Engine/Plugins/Marketplace/Streamline/Binaries/ThirdParty/Win64/*.dll",
+  "$STEAM_INSTALL_DIR/Stalker2/Binaries/Win64/dwmapi.dll",
   "$STEAM_INSTALL_DIR/Stalker2/Binaries/Win64/ReShade.ini",
-  "$STEAM_INSTALL_DIR/Stalker2/Binaries/Win64/dlssg_to_fsr3_amd_is_better.dll",
   "$STEAM_INSTALL_DIR/Stalker2/Binaries/Win64/renodx-stalker2.addon64",
   "$STEAM_INSTALL_DIR/Stalker2/Binaries/Win64/ue4ss",
   "$STEAM_INSTALL_DIR/Stalker2/Binaries/Win64/version.dll",
   "$STEAM_INSTALL_DIR/Stalker2/Binaries/Win64/winmm.dll",
-  "$STEAM_INSTALL_DIR/Stalker2/Content/Movies/MainMenuVideo",
   "$STEAM_INSTALL_DIR/Stalker2/Content/Paks/~mods",
 ]
 tag = [
